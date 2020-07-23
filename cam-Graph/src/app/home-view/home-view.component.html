@@ -1,0 +1,58 @@
+<div class="headerTab container-fluid">
+   <div class="textTtle"> <span class="icon-eye-2"></span>  Visualización de siembras  </div>
+    <div class="setColors">
+        <div class="colors" id="black" (click)="changeColorTabla('table table-dark')"></div>
+        <div class="colors" id="green" (click)="changeColorTabla('table table-success')"></div>
+        <div class="colors" id="white" (click)="changeColorTabla('table')"></div>
+        <div class="colors" id="blue" (click)="changeColorTabla('table table-info')"></div>
+    </div>
+  </div>  
+  <div class="headTitle text text-success p-2">
+    Tienes en el momento, {{this.dbGenGestion.length}} siembra(s)
+  </div>
+  <table class="table" id="viewWeb">
+    <thead>
+      <tr >
+        <th scope="col">Codigo</th>
+        <th scope="col">Fecha Ini</th>
+        <th scope="col">Fecha Ven.</th>
+        <th scope="col">Camaronera</th>
+        <th scope="col">N. Piscina</th>
+        <th scope="col">Ver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let GeneralInfo of dbGenGestion">
+        <td>{{GeneralInfo.codigo}}</td>  
+        <td> {{GeneralInfo.fecha | date: short }} </td>
+        <td> {{GeneralInfo.fechaven | date: short}} </td>
+        <td> {{GeneralInfo.nomcamaronera}} </td>
+        <td> {{GeneralInfo.nompiscina}} </td>
+        <td class="verHist" (click)="GetCodSiembra(GeneralInfo.codigo)"> <span class="icon-search-2"></span> Ver </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" id="viewMobil">
+    <thead>
+      <tr >
+        <!-- <th scope="col">Codigo</th>
+        <th scope="col">Fecha Ini</th>
+        <th scope="col">Fecha Ven.</th> -->
+        <th scope="col">Camaronera</th>
+        <th scope="col">N. Piscina</th>
+        <th scope="col">Ver</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let GeneralInfo of dbGenGestion">
+        <!-- <td>{{GeneralInfo.codigo}}</td>  
+        <td> {{GeneralInfo.fecha | date: short }} </td>
+        <td> {{GeneralInfo.fechaven | date: short}} </td> -->
+        <td> {{GeneralInfo.nomcamaronera}} </td>
+        <td> {{GeneralInfo.nompiscina}} </td>
+        <td class="verHist" (click)="GetCodSiembra(GeneralInfo.codigo)"> <span class="icon-search-2"></span> Ver </td>
+      </tr>
+    </tbody>
+  </table>
+  
