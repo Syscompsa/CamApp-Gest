@@ -17,11 +17,6 @@ export class TableComponent implements OnInit {
   public aplyHeight: any = this.sHeight - 350;
   public finalHeight: string = this.aplyHeight + 'px';
   public diaActual: any;
-  public active: boolean;
-  // tslint:disable-next-line: variable-name
-  public _activeBgOn = 'pink';
-   // tslint:disable-next-line: variable-name
-  public _activeBgOf = 'transparent';
   public SumaId: number;
   public dateStringConv: string;
 
@@ -30,14 +25,13 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.getDatagraphService();
     console.log('Este es el codigo de la caronera ' + this.env.codCam);
-    // const f = new Date();
-    // const MesActual = (Number(f.getMonth()) + 1);
-    // const Year = f.getFullYear();
-    // const Day = f.getDate();
-    // let dataDate = Year + '-' + MesActual + '-' + Day;
-    // if (MesActual <= 9) { dataDate = Year + '-' + '0' + MesActual + '-' + Day; }
-    // this.dateStringConv = dataDate.toString();
-    // console.log(" Este es el dia actual "+this.diaActual)
+    const f = new Date();
+    const MesActual = (Number(f.getMonth()) + 1);
+    const Year = f.getFullYear();
+    const Day = f.getDate();
+    let dataDate = Year + '-' + MesActual + '-' + Day;
+    if (MesActual <= 9) { dataDate = Year + '-' + '0' + MesActual + '-' + Day; }
+    this.dateStringConv = dataDate.toString();
   }
 
   getDatagraphService() {

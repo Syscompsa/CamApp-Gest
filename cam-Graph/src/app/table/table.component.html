@@ -12,7 +12,7 @@
         <!-- <tr [ngStyle]="{'background-color': data.fechaMod.toString()
         .slice(0, 10)==dateStringConv ? '#3254a8' : 'transparent'}"
          *ngFor="let data of  InterSP_GRAFICAWEB"> -->
-        <tr *ngFor="let dataGrafica of InterSP_GRAFICAWEB, let i = index ">
+        <tr [ngStyle]="{'background-color': dataGrafica.fechaMod.toString().slice(0, 10)==dateStringConv ? '#44bcd8' : 'transparent'}" *ngFor="let dataGrafica of InterSP_GRAFICAWEB, let i = index ">
             <td>{{ dataGrafica.fechaMod | date: 'shortDate' }}</td>
             <td>{{ dataGrafica.alim_real }}</td>
             <td>{{ dataGrafica.alim_proy }}</td>
