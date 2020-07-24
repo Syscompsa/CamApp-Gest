@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { DataGraphGenComponent } from './data-graph-gen/data-graph-gen.component';
+import { TableComponent } from './table/table.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { DataGraphGenComponent } from './data-graph-gen/data-graph-gen.component
     AppComponent,
     HomeViewComponent,
     DataGraphGenComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

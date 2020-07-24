@@ -19,28 +19,30 @@ export class HomeViewComponent implements OnInit {
     ngOnInit() {
       this.GestionesGen();
     }
-  
+
     GestionesGen() {
       this.gestGeneral.GetGestion().subscribe(
-        x => {          
-          //console.log(x);
+        x => {
+          // console.log(x);
           this.dbGenGestion = x;
-          console.log(this.dbGenGestion);        
-        })
-      
+          console.log(this.dbGenGestion);
+        }
+      );
+
     }
     GetCodSiembra(dato) {
       this.env.codSiembra = dato;
       console.log(this.codigoSiembra);
-      this.router.navigate(['/DataGraph']); 
-      
+      this.router.navigate(['/Data']);
+
     }
 
     changeColorTabla(property){
-      let viewWeb = document.getElementById('viewWeb');
-      let viewMobil = document.getElementById('viewMobil');
-      viewWeb.setAttribute("class", property);
+      const viewWeb = document.getElementById('viewWeb');
+      const viewMobil = document.getElementById('viewMobil');
+      viewWeb.setAttribute('class', property);
+      viewMobil.setAttribute('class', property);
     }
-  
+
 
 }

@@ -1,0 +1,126 @@
+* {
+    /*color-rendering: gray;*/
+}
+
+.inp {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.allGeneralCont {
+    border: solid 1px white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 9pt;
+}
+
+.dash {
+    /*border: solid 1px aqua;*/
+    width: 48%;
+}
+
+input {
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px gray;
+    background-color: transparent !important;
+}
+
+label {
+    margin-bottom: 0px !important;
+}
+
+.inpts {
+    margin-bottom: 10px;
+    width: 48%;
+}
+
+.buttonMin {
+    background-color: lightblue;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    font-size: 6pt;
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: ease all 0.6s;
+}
+
+.pro {
+    color: gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
+    border: solid 0.5px #c6c6c6;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 7pt;
+    cursor: pointer;
+    transition: ease all 2.5s;
+}
+
+.pro:hover {
+    transition: ease all 0.5s;
+    background-color: #c6c6c6;
+    border-color: white;
+}
+
+.viewsChar {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: steelblue;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+.stt {
+    display: flex;
+}
+
+.colorsParams {
+    width: 48%;
+}
+
+.colors {
+    width: 100px;
+    border: none;
+    cursor: pointer;
+}
+
+.buttonMin:hover {
+    transition: ease all 0.6s;
+    background-color: orangered;
+}
+
+.charA {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-shrink: initial;
+}
+
+.viewsChar {
+    width: 50%;
+    height: 160px;
+    /*background-color: lightblue;*/
+}
+
+.charB {
+    /*border: solid 1px yellow;*/
+}

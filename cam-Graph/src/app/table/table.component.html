@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Alim. (Kg)</th>
+            <th scope="col">Alim. Proy.</th>
+            <th scope="col">Peso Real</th>
+            <th scope="col">Peso Proy.</th>
+        </tr>
+    </thead>
+    <tbody [ngStyle]="{'height': finalHeight}">
+        <!-- <tr [ngStyle]="{'background-color': data.fechaMod.toString()
+        .slice(0, 10)==dateStringConv ? '#3254a8' : 'transparent'}"
+         *ngFor="let data of  InterSP_GRAFICAWEB"> -->
+        <tr *ngFor="let dataGrafica of InterSP_GRAFICAWEB, let i = index ">
+            <td>{{ dataGrafica.fechaMod | date: 'shortDate' }}</td>
+            <td>{{ dataGrafica.alim_real }}</td>
+            <td>{{ dataGrafica.alim_proy }}</td>
+            <td>{{ dataGrafica.peso_real }}</td>
+            <td>{{ dataGrafica.creci_proy }}</td>
+        </tr>
+    </tbody>
+</table>

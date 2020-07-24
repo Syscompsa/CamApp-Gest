@@ -1,0 +1,31 @@
+/*Manejo de tabla INICIO*/
+
+tbody {
+    display: block;
+    overflow: auto;
+}
+
+tbody::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    /* even columns width , fix width of table too*/
+}
+
+thead {
+    width: calc( 100% - 1em)/* scrollbar is average 1em/16px width, remove it from thead width */
+}
+
+table {
+    width: 100%;
+    color: #444444;
+}
+
+
+/*Manejo de tabla FIN*/
