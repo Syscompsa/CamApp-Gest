@@ -2,6 +2,9 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import { environment } from 'src/environments/environment';
+import { SP_GRAFICAWEB } from '../Models/SP_GRAFICAMWEB';
+import { DatagraphService } from '../Services/datagraph.service';
 
 am4core.useTheme(am4themes_animated);
 
@@ -12,45 +15,104 @@ am4core.useTheme(am4themes_animated);
 })
 export class GraficaComponent implements OnInit {
 
-  private chart: am4charts.XYChart;
 
-  constructor(private zone: NgZone) { }
+  // tslint:disable-next-line: variable-name
+  public InterSP_GRAFICAWEB: SP_GRAFICAWEB[] = [];
+  public env = environment;
+  public sHeight = screen.height;
+  public aplyHeight: any = this.sHeight - 350;
+  public finalHeight: string = this.aplyHeight + 'px';
+  public fechaMod: any = [];
+  public pesoProy: any = [];
+  public visits: number = 10;
+  public pesoReal: any = [];
+  public chart: any;
+
+  constructor(public datagraph: DatagraphService, private zone: NgZone) { }
 
   ngOnInit() {
-    this.zone.runOutsideAngular(() => {
-      const chart = am4core.create('chartdiv', am4charts.XYChart);
-
-      chart.paddingRight = 20;
-
-      let data = [];
-      let visits = 10;
-      for (let i = 1; i < 366; i++) {
-        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-        data.push({ date: new Date(2018, 0, i), name: 'name' + i, value: visits });
-      }
-
-      chart.data = data;
-
-      const dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-      dateAxis.renderer.grid.template.location = 0;
-
-      const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-      valueAxis.tooltip.disabled = true;
-      valueAxis.renderer.minWidth = 35;
-
-      const series = chart.series.push(new am4charts.LineSeries());
-      series.dataFields.dateX = 'date';
-      series.dataFields.valueY = 'value';
-
-      series.tooltipText = '{valueY.value}';
-      chart.cursor = new am4charts.XYCursor();
-
-      const scrollbarX = new am4charts.XYChartScrollbar();
-      scrollbarX.series.push(series);
-      chart.scrollbarX = scrollbarX;
-
-      this.chart = chart;
-    });
-  }
+    this.grafica();
   }
 
+  grafica() {
+
+    // tslint:disable-next-line: deprecation
+    this.datagraph.getSP_GRAFICAWEB(this.env.codSiembra).subscribe(
+      x => {
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+        let chart = am4core.create('chartdiv', am4charts.XYChart);
+
+        this.InterSP_GRAFICAWEB = x;
+        let data = [];
+        for (let i = 0; i <= this.InterSP_GRAFICAWEB.length - 1; i++) {
+          data.push({
+            date: this.InterSP_GRAFICAWEB[i].fechaMod,
+            value: this.InterSP_GRAFICAWEB[i].creci_proy  + '(gr) / Peso Proyectado',
+            value2: this.InterSP_GRAFICAWEB[i].peso_real + '(gr) / Peso Real',
+            value3: this.InterSP_GRAFICAWEB[i].alim_real / 50 + '(gr) / Alimentación Real',
+            value4: this.InterSP_GRAFICAWEB[i].alim_proy / 50 + '(gr) / Alimentación Proyectada',
+            previousDate: this.InterSP_GRAFICAWEB[i].fechaMod
+          });
+        }
+        // Create axes
+        let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.minGridDistance = 50;
+
+        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+        // Create series creci_proy
+        let series = chart.series.push(new am4charts.LineSeries());
+        series.dataFields.valueY = 'value';
+        series.dataFields.dateX = 'date';
+        series.strokeWidth = 2;
+        series.stroke = am4core.color(this.env.Color_creci_proy);
+        series.minBulletDistance = 10;
+        series.strokeDasharray = '3,4';
+
+        // Create series peso_real
+        let series2 = chart.series.push(new am4charts.LineSeries());
+        series2.dataFields.valueY = 'value2';
+        series2.dataFields.dateX = 'date';
+        series2.strokeWidth = 2;
+        series2.fill = am4core.color('yellow');
+        series2.stroke = am4core.color(this.env.Color_peso_real);
+        series2.tensionX = 0.8;
+        series2.stroke = series2.stroke;
+
+        // Create series alim_real
+        let series3 = chart.series.push(new am4charts.LineSeries());
+        series3.dataFields.valueY = 'value3';
+        series3.dataFields.dateX = 'date';
+        series3.strokeWidth = 1;
+        series3.fill = am4core.color('yellow');
+        series3.stroke = am4core.color(this.env.Color_alim_real);
+        series3.tensionX = 0.8;
+        series3.stroke = series3.stroke;
+
+        // Create series alim_proy
+        let series4 = chart.series.push(new am4charts.LineSeries());
+        series4.dataFields.valueY = 'value4';
+        series4.dataFields.dateX = 'date';
+        series4.strokeWidth = 1;
+        series4.fill = am4core.color('yellow');
+        series4.stroke = am4core.color(this.env.Color_alm_proy);
+        series4.tensionX = 0.8;
+        series4.strokeDasharray = '3,4';
+        series4.stroke = series4.stroke;
+
+        series.tooltipText = '[bold]{date.formatDate()}:[/] {value}' +
+          '\n[bold]{date.formatDate()}: [/] {value2}' +
+          '\n[bold]{date.formatDate()}:[/] {value3}' +
+          '\n[bold]{date.formatDate()}:[/] {value4}';
+        series.tooltip.pointerOrientation = 'vertical';
+
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.snapToSeries = series;
+        chart.cursor.xAxis = dateAxis;
+        chart.scrollbarY = new am4core.Scrollbar();
+        chart.scrollbarX = new am4core.Scrollbar();
+  });
+
+  }
+}
