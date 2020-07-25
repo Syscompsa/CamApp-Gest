@@ -1,6 +1,11 @@
 <div class="allGeneralCont container-fluid animated fadeInLeft slow">
-    <div class="buttonMin">
-        <span class="icon-window-minimize"></span>
+    <div class="minSett">
+        <div class="buttonMin" (click)="minimizar()" id="Minimizar" title="Dele click para minimizar, y tambien vuelva a dar click para maximizarlo">
+            <span class="icon-eye-2"></span>
+        </div>
+        <div class="buttonMin" id="volver" (click)="navLink()" title="Dele click para volver a la página anterior">
+            <span class="icon-left-open-2"></span>
+        </div>
     </div>
     <!-- dashboard 1  [Inicio]-->
     <div class="dash" id="dashA">
@@ -31,8 +36,8 @@
             <div class="inpts">
                 <label for="fSiembraven">
           <span class="icon-calendar-2"></span>
-          Fecha Siembra Fin.:
-        </label>
+            Fecha Siembra Fin.:
+          </label>
                 <input type="text" id="fSiembraven" readonly value="{{InterISsp_031e[0].fechaven | date: 'shortDate'}}" />
             </div>
         </div>
@@ -54,51 +59,91 @@
 
     <!-- dashboard 2  [Inicio]-->
 
-    <div class="dash">
+    <div class="dash" id="dashB">
 
         <div class="charA">
             <div class="viewsChar">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span class=" icon-resize-vertical-2"></span> Escala de crecimiento para parametros:
+                  </button>
+                            </h2>
+                        </div>
 
-            </div>
-            <div class="viewsChar">
-                <p class="title"> <span class="icon-palette"></span> Colores de parametros: </p>
-                <div class="stt">
-                    <div class="colorsParams">
-                        <label for="Peso_Proyectado">
-              <div class="pro">
-                Alimentación Proyectada:
-                <input type="color" name="colorA" oncha  class="colors" />
-              </div>
-            </label>
-                        <label for="Peso_Proyectado">
-              <div class="pro">
-                Alimentación Real: <input type="color" name="colorB" class="colors" />
-              </div>
-            </label>
-                    </div>
-                    <div class="colorsParams">
-                        <label for="Peso_Proyectado">
-              <div class="pro">
-                Peso Proyectado: <input type="color" name="colorA" class="colors" id="Peso_Proyectado" />
-              </div>
-            </label>
-                        <label for="Peso_Real">
-              <div class="pro">
-                Peso Real:
-                <input type="color" name="colorB" class="colors" id="Peso_Real" />
-              </div>
-            </label>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="inpRange">
+                                    <label> Peso Real / Peso Proy. </label>
+                                    <input type="range" min="1" max="100" class="slider" (change)="changeCalcA(valorA )" value="{{env.escA}}" (input)="valorA = $event.target.value" />
+
+                                </div>
+                                <div class="inpRange">
+                                    <label> Alim. Real / Alim Proy. </label>
+                                    <input type="range" min="1" max="100" (change)="changeCalcB(valorB)" value="{{env.escB}}" (input)="valorB = $event.target.value" class="slider" />
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="viewsChar">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <span class="icon-palette"></span> Colores de parametros:
+                  </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="stt">
+                                    <div class="colorsParams">
+                                        <label for="Peso_Proyectado">
+                        <div class="pro">
+                          Alimentación Proy.: <input type="color" name="colorA" oncha class="colors" />
+                        </div>
+                      </label>
+                                        <label for="Peso_Proyectado">
+                        <div class="pro">
+                          Alimentación Real: <input type="color" name="colorB" class="colors" />
+                        </div>
+                      </label>
+                                    </div>
+                                    <div class="colorsParams">
+                                        <label for="Peso_Proyectado">
+                        <div class="pro">
+                          Peso Proyectado: <input type="color" name="colorA" class="colors" id="Peso_Proyectado" />
+                        </div>
+                      </label>
+                                        <label for="Peso_Real">
+                        <div class="pro">
+                          Peso Real:
+                          <input type="color" name="colorB" class="colors" id="Peso_Real" />
+                        </div>
+                      </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
         </div>
         <div class="charB">
-            <app-grafica></app-grafica>
+            <app-grafica [RecValorA]="valorA" [RecValorB]="valorB"></app-grafica>
         </div>
+        <!-- dashboard 2  [Fin]-->
+
 
     </div>
-
-    <!-- dashboard 2  [Fin]-->
-
-
-</div>

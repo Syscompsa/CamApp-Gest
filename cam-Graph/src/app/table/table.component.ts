@@ -24,7 +24,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.getDatagraphService();
-    console.log('Este es el codigo de la caronera ' + this.env.codCam);
+    //console.log('Este es el codigo de la caronera ' + this.env.codCam);
     const f = new Date();
     const MesActual = (Number(f.getMonth()) + 1);
     const Year = f.getFullYear();
@@ -38,7 +38,7 @@ export class TableComponent implements OnInit {
      this.datagraph.getSP_GRAFICAWEB(this.env.codSiembra).subscribe(
     x => {
       this.InterSP_GRAFICAWEB = x;
-      console.log(this.InterSP_GRAFICAWEB);
+      //console.log(this.InterSP_GRAFICAWEB);
       }
     );
   }

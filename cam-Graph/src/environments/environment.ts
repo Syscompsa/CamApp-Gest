@@ -20,15 +20,19 @@ export const environment = {
   _border: '',
 /*variables de mensajeria FIN*/
 
-  //estos son variables para el grafico
+  // estos son variables para el grafico
   codSiembra: '',
 
-  //colores de los parametros
+  // colores de los parametros
   Color_alm_proy: 'magenta',
   Color_alim_real: 'green',
   Color_peso_real: 'yellow',
-  Color_creci_proy: 'aqua'
-
+  Color_creci_proy: 'aqua',
+  // escalas
+  escA: 1,
+  escB: 50,
+  escArrA: [],
+  escArrB: []
 
 };
 

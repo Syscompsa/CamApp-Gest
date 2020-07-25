@@ -25,14 +25,14 @@ export class HomeViewComponent implements OnInit {
         x => {
           // console.log(x);
           this.dbGenGestion = x;
-          console.log(this.dbGenGestion);
+         // console.log(this.dbGenGestion);
         }
       );
 
     }
     GetCodSiembra(dato) {
       this.env.codSiembra = dato;
-      console.log(this.codigoSiembra);
+     // console.log(this.codigoSiembra);
       this.router.navigate(['/Data']);
 
     }

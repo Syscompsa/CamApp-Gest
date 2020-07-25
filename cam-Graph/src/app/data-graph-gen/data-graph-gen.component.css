@@ -41,17 +41,31 @@ label {
 
 .buttonMin {
     background-color: lightblue;
-    width: 15px;
-    height: 15px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
-    /*align-items: center;*/
-    font-size: 6pt;
+    align-items: center;
+    font-size: 10pt;
+    color: white;
     cursor: pointer;
     position: absolute;
     left: 0px;
     top: 0px;
-    transition: ease all 0.6s;
+    opacity: 0.4;
+    z-index: 20000;
+    transition: ease all 1.5s;
+}
+
+.buttonMin:hover {
+    transition: ease all 0.5s;
+    opacity: 0.8;
+    border-radius: 7px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
+}
+
+#volver {
+    margin-top: 35px;
 }
 
 .pro {
@@ -110,17 +124,97 @@ p {
 .charA {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     flex-shrink: initial;
+    height: auto;
 }
 
 .viewsChar {
     width: 50%;
-    height: 160px;
+    height: auto;
     /*background-color: lightblue;*/
 }
 
 .charB {
-    /*border: solid 1px yellow;*/
+    height: 350px;
+}
+
+
+/* Animacion de Opacidad INICIO */
+
+@keyframes hidElements {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes showElementes {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/*
+  /Animacion de Opacidad Fin/ */
+
+
+/* /Animacion de Min Inicio/ */
+
+@keyframes widthOutPerfil {
+    0% {
+        width: 48%;
+        height: 500px;
+        /* border: solid 1px #e0e0e0; */
+    }
+    100% {
+        width: 25px;
+        height: 25px;
+        /* border: solid 0px #e0e0e0; */
+    }
+}
+
+
+/* /Animacion de Min Fin/ */
+
+
+/* /Animacion de Max Inicio/  */
+
+@keyframes widthInPerfil {
+    0% {
+        width: 25px;
+        height: 25px;
+        border: solid 0px #e0e0e0;
+    }
+    100% {
+        width: 48%;
+        height: 500px;
+        border: solid 1px #e0e0e0;
+    }
+}
+
+
+/* /Animacion de Max Fin/ */
+
+.slider::after {
+    content: 100;
+    color: gray;
+    font-size: 9pt;
+}
+
+.slider::before {
+    content: 0;
+    color: gray;
+    font-size: 9pt;
+}
+
+.value {
+    color: steelblue;
 }
