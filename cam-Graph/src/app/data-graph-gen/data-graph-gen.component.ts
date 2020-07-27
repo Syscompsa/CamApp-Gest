@@ -4,6 +4,8 @@ import { DatagraphService } from '../Services/datagraph.service';
 import { ISsp_031e } from '../Models/ISsp_0314e';
 import { GraficaComponent } from '../grafica/grafica.component';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-data-graph-gen',
@@ -18,13 +20,42 @@ export class DataGraphGenComponent implements OnInit {
    public sHeight = screen.height;
    public aplyHeight = this.sHeight - 350;
    public finalHeight: string = this.aplyHeight + 'px';
-   public valorA: number;
-   public valorB: number;
+   public valorA = 1;
+   public valorB = 50;
+
+  // variables para input color [INICIO]
+  // tslint:disable-next-line: variable-name
+  public _colorsA = '#E8CC1A';
+  // tslint:disable-next-line: variable-name
+  public _colorsB = '#E8871A';
+  // tslint:disable-next-line: variable-name
+  public _colorsC = '#1AE87B';
+  // tslint:disable-next-line: variable-name
+  public _colorsD = '#1AE2E8';
+
+   // variables para input color [FIN]
 
   constructor(public datagraph: DatagraphService, public route: Router) { }
 
   ngOnInit() {
     this.getSp_0314e();
+    if (screen.width <= 600) {
+      Swal.fire({
+        // title: '<strong>HTML <u>example</u></strong>',
+        icon: 'info',
+        html:
+          '<strong>Consejo:</strong> ' +
+          '<p>Para una mejor Experiencia gira tu Teléfono</p>' +
+          '<img src=\'../../assets/cel-rotate.png\'> ',
+        showCloseButton: true,
+        showCancelButton: true,
+        focusConfirm: false,
+        confirmButtonText:
+          '<i class="fa fa-thumbs-up"></i> Genial!',
+        confirmButtonAriaLabel: 'Thumbs up, great!'
+      });
+    }
+
   }
 
   // tslint:disable-next-line: only-arrow-functions
@@ -35,16 +66,16 @@ export class DataGraphGenComponent implements OnInit {
   }
 
   changeCalcA(a) {
-    let valA = Number(a);
-    console.log(valA);
-    this.env.escA = valA;
-    console.log('escA ' + this.env.escA);
-    this.env.escArrA.push(this.env.escA);
-    console.log(this.env.escArrA);
+    // const valA = Number(a);
+    // console.log(valA);
+    // this.env.escA = valA;
+    // console.log('escA ' + this.env.escA);
+    // this.env.escArrA.push(this.env.escA);
+    // console.log(this.env.escArrA);
   }
 
   changeCalcB(b) {
-    let valB = Number(b);
+    const valB = Number(b);
     console.log(valB);
     this.env.escB = valB;
     console.log('escB ' + this.env.escB);

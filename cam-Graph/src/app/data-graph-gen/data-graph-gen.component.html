@@ -1,3 +1,18 @@
+<div class="men">
+    <div class="siemb"> <span class="icon-braille"></span> Siembra: {{env.codSiembra}} </div>
+    <div class="dataResponsive" *ngFor="let dato of InterISsp_031e">
+        <div class="cam">
+            <span class="icon-circle-empty"></span> Camaronera: {{InterISsp_031e[0].camaron}}
+        </div>
+        <div class="cam">
+            <span class="icon-calendar-1"></span> Fecha Inicio: {{InterISsp_031e[0].fecha | date: 'shortDate'}}
+        </div>
+        <div class="cam">
+            <span class="icon-calendar-1"></span> Fecha Fin: {{InterISsp_031e[0].fechaven | date: 'shortDate'}}
+        </div>
+    </div>
+</div>
+
 <div class="allGeneralCont container-fluid animated fadeInLeft slow">
     <div class="minSett">
         <div class="buttonMin" (click)="minimizar()" id="Minimizar" title="Dele click para minimizar, y tambien vuelva a dar click para maximizarlo">
@@ -22,7 +37,7 @@
             <div class="inpts" *ngFor="let datos of InterISsp_031e">
                 <label for="cam">
           <span class="icon-braille"></span>
-          Camaronera:
+         Camaronera:
         </label>
                 <input type="text" id="camaronera" readonly value="{{InterISsp_031e[0].camaron}}" />
             </div>
@@ -67,8 +82,8 @@
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <span class=" icon-resize-vertical-2"></span> Escala de crecimiento para parametros:
+                                <button class="btn btn-link btn-block text-left display d-flex align-content-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <span class=" icon-resize-vertical-2"></span> <p style="margin: 0px;" class="ps">Escala de parametros:</p>
                   </button>
                             </h2>
                         </div>
@@ -95,38 +110,41 @@
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <span class="icon-palette"></span> Colores de parametros:
+                                <button class="btn btn-link btn-block text-left display d-flex align-content-center" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+                    <span class="icon-palette"></span>  <p style="margin: 0px;" class="ps">Colores de parametros:</p>
                   </button>
                             </h2>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="stt">
                                     <div class="colorsParams">
                                         <label for="Peso_Proyectado">
                         <div class="pro">
-                          Alimentación Proy.: <input type="color" name="colorA" oncha class="colors" />
+                          Alimentación Real:
+                          <input (input)="_colorsC = $event.target.value" type="color" name="colorC" oncha class="colors" />
                         </div>
                       </label>
                                         <label for="Peso_Proyectado">
                         <div class="pro">
-                          Alimentación Real: <input type="color" name="colorB" class="colors" />
+                          Alimentación Proy.:
+                          <input (input)="_colorsD = $event.target.value" type="color" name="colorD" class="colors" />
                         </div>
                       </label>
                                     </div>
                                     <div class="colorsParams">
                                         <label for="Peso_Proyectado">
-                        <div class="pro">
-                          Peso Proyectado: <input type="color" name="colorA" class="colors" id="Peso_Proyectado" />
-                        </div>
-                      </label>
+                          <div class="pro">
+                            Peso Proyectado:
+                            <input (input)="_colorsA = $event.target.value" type="color" name="colorA" class="colors" id="Peso_Proyectado" />
+                          </div>
+                        </label>
                                         <label for="Peso_Real">
-                        <div class="pro">
-                          Peso Real:
-                          <input type="color" name="colorB" class="colors" id="Peso_Real" />
-                        </div>
+                          <div class="pro">
+                            Peso Real:
+                            <input (input)="_colorsB = $event.target.value" type="color" name="colorB" class="colors" id="Peso_Real" />
+                          </div>
                       </label>
                                     </div>
                                 </div>
@@ -141,7 +159,7 @@
 
         </div>
         <div class="charB">
-            <app-grafica [RecValorA]="valorA" [RecValorB]="valorB"></app-grafica>
+            <app-grafica [RecValorA]="valorA" [RecValorB]="valorB" [ColorA]="_colorsA" [ColorB]="_colorsB" [ColorC]="_colorsC" [ColorD]="_colorsD"></app-grafica>
         </div>
         <!-- dashboard 2  [Fin]-->
 

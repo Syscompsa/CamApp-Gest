@@ -9,6 +9,7 @@ import { HomeViewComponent } from './home-view/home-view.component';
 import { DataGraphGenComponent } from './data-graph-gen/data-graph-gen.component';
 import { TableComponent } from './table/table.component';
 import { GraficaComponent } from './grafica/grafica.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -18,16 +19,19 @@ import { GraficaComponent } from './grafica/grafica.component';
     DataGraphGenComponent,
     TableComponent,
     GraficaComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([  
+    RouterModule.forRoot([
       { path: 'HomeView', component: HomeViewComponent, pathMatch: 'full' },
-      { path: 'Data', component: DataGraphGenComponent, pathMatch: 'full' }
- 
+      { path: 'Data', component: DataGraphGenComponent, pathMatch: 'full' },
+      { path: 'Login', component: LoginComponent, pathMatch: 'full' },
+      { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
+
     ])
   ],
 

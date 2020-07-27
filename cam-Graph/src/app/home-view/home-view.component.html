@@ -1,3 +1,4 @@
+<div class="hi container-fluid"><span class="icon-off" id="off" title="Cerrar Sesión" (click)="closeSession()"></span> Bienvenido: {{env.nameUser}} </div>
 <div class="headerTab container-fluid ">
     <div class="textTtle"> <span class="icon-eye-2"></span> Visualización de siembras </div>
     <div class="setColors">
@@ -24,8 +25,8 @@
     <tbody>
         <tr *ngFor="let GeneralInfo of dbGenGestion">
             <td>{{GeneralInfo.codigo}}</td>
-            <td> {{GeneralInfo.fecha | date: short }} </td>
-            <td> {{GeneralInfo.fechaven | date: short}} </td>
+            <td> {{GeneralInfo.fecha | date: 'short' }} </td>
+            <td> {{GeneralInfo.fechaven | date: 'short'}} </td>
             <td> {{GeneralInfo.nomcamaronera}} </td>
             <td> {{GeneralInfo.nompiscina}} </td>
             <td class="verHist" (click)="GetCodSiembra(GeneralInfo.codigo)"> <span class="icon-search-2"></span> Ver </td>

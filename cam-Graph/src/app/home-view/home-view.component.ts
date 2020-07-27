@@ -44,5 +44,9 @@ export class HomeViewComponent implements OnInit {
       viewMobil.setAttribute('class', property);
     }
 
+    closeSession(){
+      this.router.navigate(['/Login']);
+    }
+
 
 }

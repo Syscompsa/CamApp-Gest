@@ -16,7 +16,8 @@ constructor(
 
 ){}
   ngOnInit() {
-
+    // tslint:disable-next-line: no-unused-expression
+    this.route.navigate[('/' + 'HomeView')];
 
   }
 

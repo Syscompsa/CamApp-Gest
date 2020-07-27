@@ -9,6 +9,23 @@
     flex-wrap: wrap;
 }
 
+.men {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 10pt;
+}
+
+.dataResponsive {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cam {
+    margin-left: 10px;
+}
+
 .allGeneralCont {
     border: solid 1px white;
     padding: 10px;
@@ -94,6 +111,14 @@ label {
     flex-direction: column;
 }
 
+.men {
+    background-color: steelblue;
+    color: white;
+    width: 100%;
+    height: auto;
+    padding: 15px;
+}
+
 .title {
     color: steelblue;
 }
@@ -107,7 +132,17 @@ p {
 }
 
 .colorsParams {
-    width: 48%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ps {
+    font-size: 10pt;
+    margin-top: 2px !important;
+}
+
+#headingOne {
+    padding: 0px;
 }
 
 .colors {
@@ -217,4 +252,23 @@ p {
 
 .value {
     color: steelblue;
+}
+
+@media (max-width: 1085px) {
+    #dashA {
+        display: none;
+    }
+    #dashB {
+        width: 100%;
+    }
+    .ps {
+        display: none;
+    }
+    .charA {
+        display: flex;
+        flex-direction: column;
+    }
+    .viewsChar {
+        width: 100%;
+    }
 }
