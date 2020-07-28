@@ -131,6 +131,23 @@ p {
     display: flex;
 }
 
+#off {
+    color: steelblue;
+    transition: ease all 0.5s;
+}
+
+#off:hover {
+    color: rgb(255, 187, 0);
+    transition: ease all 0.5s;
+    cursor: pointer;
+}
+
+.hi {
+    background-color: #444444;
+    color: white;
+    padding: 1 !important;
+}
+
 .colorsParams {
     display: flex;
     flex-wrap: wrap;
@@ -172,7 +189,7 @@ p {
 }
 
 .charB {
-    height: 350px;
+    height: 450px;
 }
 
 

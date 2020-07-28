@@ -35,7 +35,7 @@ export class DataGraphGenComponent implements OnInit {
 
    // variables para input color [FIN]
 
-  constructor(public datagraph: DatagraphService, public route: Router) { }
+  constructor(public router: Router, public datagraph: DatagraphService, public route: Router) { }
 
   ngOnInit() {
     this.getSp_0314e();
@@ -85,10 +85,12 @@ export class DataGraphGenComponent implements OnInit {
     const buttonMin = document.getElementById('buttonMin');
     const dashA = document.getElementById('dashA');
     const dashB = document.getElementById('dashB');
+    let Minimizar = document.getElementById('Minimizar');
     switch (this.togle) {
       case true:
         this.togle = false;
         dashA.style.animation = ' ease 1s hidElements';
+        Minimizar.setAttribute('title', 'Maximizar');
         this.timeEvent(1000, dashA, 'none');
         dashA.style.animation = 'ease 1s widthOutPerfil';
         dashA.style.width = '25px';
@@ -101,6 +103,7 @@ export class DataGraphGenComponent implements OnInit {
         break;
       case false:
         this.togle = true;
+        Minimizar.setAttribute('title', 'Minimizar');
         // console.log(this.togle);
         dashA.style.animation = 'ease 1s showElementes';
         this.timeEvent(1000, dashA, '');
@@ -124,5 +127,10 @@ export class DataGraphGenComponent implements OnInit {
     // console.log(this.InterISsp_031e[0].camaron);
    }
   )
+
+
+  closeSession(){
+    this.router.navigate(['/Login']);
+  }
 
 }

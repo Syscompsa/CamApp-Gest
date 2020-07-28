@@ -1,3 +1,6 @@
+<div class="hi container-fluid">
+    <span class="icon-off" id="off" title="Cerrar Sesión" (click)="closeSession()">
+  </span> Bienvenido: {{env.nameUser}} | OSTRATEK </div>
 <div class="men">
     <div class="siemb"> <span class="icon-braille"></span> Siembra: {{env.codSiembra}} </div>
     <div class="dataResponsive" *ngFor="let dato of InterISsp_031e">
@@ -15,17 +18,17 @@
 
 <div class="allGeneralCont container-fluid animated fadeInLeft slow">
     <div class="minSett">
-        <div class="buttonMin" (click)="minimizar()" id="Minimizar" title="Dele click para minimizar, y tambien vuelva a dar click para maximizarlo">
+        <div class="buttonMin" (click)="minimizar()" id="Minimizar" title="Minimizar">
             <span class="icon-eye-2"></span>
         </div>
-        <div class="buttonMin" id="volver" (click)="navLink()" title="Dele click para volver a la página anterior">
+        <div class="buttonMin" id="volver" (click)="navLink()" title="Volver Atras">
             <span class="icon-left-open-2"></span>
         </div>
     </div>
     <!-- dashboard 1  [Inicio]-->
     <div class="dash" id="dashA">
         <!-- dashboard 1a [Inicio]-->
-        <div class="inp">
+        <!-- <div class="inp">
             <div class="inpts">
                 <label for="siembra">
           <span class="icon-lock-2"></span>
@@ -55,7 +58,7 @@
           </label>
                 <input type="text" id="fSiembraven" readonly value="{{InterISsp_031e[0].fechaven | date: 'shortDate'}}" />
             </div>
-        </div>
+        </div> -->
 
         <!-- dashboard 1a  [Fin]-->
         <!-- dashboard 1b  [Inicio]-->
@@ -88,7 +91,7 @@
                             </h2>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="inpRange">
                                     <label> Peso Real / Peso Proy. </label>
@@ -116,7 +119,7 @@
                             </h2>
                         </div>
 
-                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="stt">
                                     <div class="colorsParams">

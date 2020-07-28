@@ -33,19 +33,19 @@ export class LoginComponent implements OnInit {
         Swal.fire({
             icon: 'success',
             title: 'Bien...',
-            text: 'Haz ingresado con exito!',
-            footer: 'Si no te las han asignado aún, comunicate con nostros, lcarrion@syscompsa.com'
+            text: 'Has ingresado con exito!',
+            footer: ''
           });
           // tslint:disable-next-line: no-unused-expression
-          this.router.navigate(['\HomeView']);
+        this.router.navigate(['\HomeView']);
         }
 
       } else {
         Swal.fire({
-          icon: 'error',
+          icon:  'error',
           title: 'Oops...',
-          text: 'Verfica tus credenciales!',
-          footer: 'Si no te las han asignado aún, comunicate con nostros, lcarrion@syscompsa.com'
+          text:  'Verifica tus credenciales!',
+          footer: ''
         });
       }
     }
