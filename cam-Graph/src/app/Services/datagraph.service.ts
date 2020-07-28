@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DatagraphService {
-  private apiURL = 'http://syscompsa.somee.com/api';
+  private apiURL = 'https://webapplicationsyscompsa20200728022748.azurewebsites.net';
+  // private apiURL = 'http://syscompsa.somee.com/api';
   // http://www.syscompsa.somee.com/api/AR_1-GraficasCamApp/GetGenView
   // https://ecuapirest.firebaseio.com/0.json
   // this.apiURL + "/AR_1-GraficasCamApp/sp_0314e"
