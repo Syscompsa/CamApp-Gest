@@ -8,13 +8,13 @@ import { Idp03a188 } from '../Models/Dp03a188';
 })
 export class Dp03a188Service {
 
-  private apiURL = "http://syscompsa.somee.com/api";
-  //http://www.syscompsa.somee.com/api/AR_1-GraficasCamApp/GetGenView
-  //https://ecuapirest.firebaseio.com/0.json
-  //this.apiURL + "/AR_1-GraficasCamApp/GetGenView"
+  private apiURL = 'https://webapplicationsyscompsa20200728022748.azurewebsites.net';
+  // http://www.syscompsa.somee.com/api/AR_1-GraficasCamApp/GetGenView
+  // https://ecuapirest.firebaseio.com/0.json
+  // this.apiURL + "/AR_1-GraficasCamApp/GetGenView"
   constructor(private http: HttpClient) { }
 
   GetGestion(): Observable<Idp03a188[]> {
-    return this.http.get<Idp03a188[]>(this.apiURL + "/AR_1-GraficasCamApp/GetGenView");
+    return this.http.get<Idp03a188[]>(this.apiURL + '/AR_1-GraficasCamApp/GetGenView');
   }
 }
