@@ -35,11 +35,6 @@
     font-size: 9pt;
 }
 
-.dash {
-    /*border: solid 1px aqua;*/
-    width: 48%;
-}
-
 input {
     width: 100%;
     border: none;
@@ -193,7 +188,6 @@ p {
 }
 
 
-
 /* Animacion de Opacidad INICIO */
 
 @keyframes hidElements {
@@ -266,6 +260,15 @@ p {
     content: 0;
     color: gray;
     font-size: 9pt;
+}
+
+#dashA {
+    width: 0%;
+}
+
+#dashB {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
 }
 
 .value {

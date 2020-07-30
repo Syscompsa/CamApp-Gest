@@ -13,7 +13,7 @@ import 'sweetalert2/src/sweetalert2.scss';
   styleUrls: ['./data-graph-gen.component.css']
 })
 export class DataGraphGenComponent implements OnInit {
-  public togle = true;
+  public togle = false;
   public env = environment;
   // tslint:disable-next-line: variable-name
    public InterISsp_031e: ISsp_031e[] = [];
@@ -59,7 +59,10 @@ export class DataGraphGenComponent implements OnInit {
   }
 
   // tslint:disable-next-line: only-arrow-functions
-  timeEvent(time, obj, param) { setTimeout(function() { obj.style.display = param; }, time); }
+  timeEvent(time, obj, obj2, param) { setTimeout(function() {
+    obj.style.display = param;
+    obj2.style.display = param;
+  }, time); }
 
   navLink() {
     this.route.navigate(['/', 'HomeView']);
@@ -85,17 +88,18 @@ export class DataGraphGenComponent implements OnInit {
     const buttonMin = document.getElementById('buttonMin');
     const dashA = document.getElementById('dashA');
     const dashB = document.getElementById('dashB');
-    let Minimizar = document.getElementById('Minimizar');
+    const tables = document.getElementById('tables');
+    const Minimizar = document.getElementById('Minimizar');
     switch (this.togle) {
       case true:
         this.togle = false;
         dashA.style.animation = ' ease 1s hidElements';
-        Minimizar.setAttribute('title', 'Maximizar');
-        this.timeEvent(1000, dashA, 'none');
+        Minimizar.setAttribute('title', 'Minimizar');
+        this.timeEvent(1000, dashA, tables, 'none');
         dashA.style.animation = 'ease 1s widthOutPerfil';
-        dashA.style.width = '25px';
-        dashA.style.height = '25px';
-        dashB.style.width = '100%';
+        dashA.style.width  = '0%';
+        dashA.style.height = '0%';
+        dashB.style.width  = '100%';
         // historyPedidos.style.animationName = 'widthHistoryIn';
         // setTimeout(function () {
         //   historyPedidos.style.width = '95%';
@@ -103,10 +107,10 @@ export class DataGraphGenComponent implements OnInit {
         break;
       case false:
         this.togle = true;
-        Minimizar.setAttribute('title', 'Minimizar');
+        Minimizar.setAttribute('title', 'Maximizar');
         // console.log(this.togle);
         dashA.style.animation = 'ease 1s showElementes';
-        this.timeEvent(1000, dashA, '');
+        this.timeEvent(1000, dashA, tables, '');
         dashA.style.animation = 'ease 1s widthInPerfil';
         dashA.style.width = '48%';
         dashA.style.height = '500px';

@@ -76,7 +76,6 @@ export class GraficaComponent implements OnInit {
 
   @Input() set ColorB(value: string ) {
     this._ColorB = value;
-    console.log(this._ColorB);
   }
   get ColorB(): string {
     return this._ColorB;
@@ -109,7 +108,7 @@ export class GraficaComponent implements OnInit {
     this.grafica(this._RecValorA, this._RecValorB, this.ColorA, this.ColorB, this.ColorC, this.ColorD);
   }
 
-  changeValue(valor){
+  changeValue(valor) {
     this._valueSeries = valor;
   }
 
