@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
+import { WebuserService } from '../Services/webuser.service';
+import { Iwebuser } from '../Models/webuser';
 
 @Component({
   selector: 'app-login',
@@ -13,42 +15,49 @@ export class LoginComponent implements OnInit {
 
   passwordType: string = 'password';
   passwordShow: boolean = false;
-  password: string = '*****';
+  password: string = '';
   usuario: string = '';
 
+  public _Iuser: Iwebuser = { webUsu: "", webPass: "" };
   env = environment;
 
-  constructor(    public router: Router ) { }
-  ngOnInit() { }
-
-
-  login() {
-      // tslint:disable-next-line: triple-equals
-      if (this.usuario == 'admin' || this.usuario == 'demo') {
-        // tslint:disable-next-line: triple-equals
-        if (this.password == '123' || this.password == 'ABC') {
-
-        this.env.nameUser = this.usuario;
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Bien...',
-            text: 'Has ingresado con exito!',
-            footer: ''
-          });
-          // tslint:disable-next-line: no-unused-expression
-        this.router.navigate(['\HomeView']);
-        }
-
-      } else {
-        Swal.fire({
-          icon:  'error',
-          title: 'Oops...',
-          text:  'Verifica tus credenciales!',
-          footer: ''
-        });
-      }
+  constructor(    public userService: WebuserService,
+    public router: Router) { }
+  ngOnInit() { 
+    if (this.userService.estaLogueado()) {
+      this.env.header = true;
+      this.router.navigate(['\HomeView']);      
     }
+  }
+
+
+  // login() {
+  //     // tslint:disable-next-line: triple-equals
+  //     if (this.usuario == 'admin' || this.usuario == 'demo') {
+  //       // tslint:disable-next-line: triple-equals
+  //       if (this.password == '123' || this.password == 'ABC') {
+
+  //       this.env.nameUser = this.usuario;
+
+  //       Swal.fire({
+  //           icon: 'success',
+  //           title: 'Bien...',
+  //           text: 'Has ingresado con exito!',
+  //           footer: ''
+  //         });
+  //         // tslint:disable-next-line: no-unused-expression
+  //       this.router.navigate(['\HomeView']);
+  //       }
+
+  //     } else {
+  //       Swal.fire({
+  //         icon:  'error',
+  //         title: 'Oops...',
+  //         text:  'Verifica tus credenciales!',
+  //         footer: ''
+  //       });
+  //     }
+  //   }
 
 
 
@@ -62,5 +71,19 @@ export class LoginComponent implements OnInit {
       this.passwordType = 'password';
     }
   }
+
+  
+  logeo() {    
+    this.userService.login(this._Iuser)
+      .subscribe(x => {
+        this.env.header = true;
+        this.env.nameUser = x.webUsu;
+        localStorage.setItem('token',x.webUsu);
+        localStorage.setItem('tokenExpiration', "Falta para token");
+        this.router.navigate(['\HomeView']);
+      }, err => alert("Clave incorrecta"));
+  }
+
+  
 
 }
