@@ -6,6 +6,7 @@ import { GraficaComponent } from '../grafica/grafica.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
+import { color } from '@amcharts/amcharts4/core';
 
 @Component({
   selector: 'app-data-graph-gen',
@@ -38,6 +39,10 @@ export class DataGraphGenComponent implements OnInit {
   constructor(public router: Router, public datagraph: DatagraphService, public route: Router) { }
 
   ngOnInit() {
+    let colorDefect = document.getElementById('colorDefect');
+    if(colorDefect.outerHTML === ''){
+      console.log('Esta vacio');
+    }
     this.getSp_0314e();
     if (screen.width <= 600) {
       Swal.fire({
@@ -55,7 +60,6 @@ export class DataGraphGenComponent implements OnInit {
         confirmButtonAriaLabel: 'Thumbs up, great!'
       });
     }
-
   }
 
   // tslint:disable-next-line: only-arrow-functions
@@ -67,6 +71,11 @@ export class DataGraphGenComponent implements OnInit {
   navLink() {
     this.route.navigate(['/', 'HomeView']);
   }
+
+getColorPalets(){
+
+}
+
 
   changeCalcA(a) {
     // const valA = Number(a);

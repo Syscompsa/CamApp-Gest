@@ -121,31 +121,36 @@
 
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
+                                <div class="colorDefect" id="colorDefect">
+                                </div>
                                 <div class="stt">
                                     <div class="colorsParams">
-                                        <label for="Peso_Proyectado">
+                                        <label for="Almreal">
                         <div class="pro">
                           Alimentación Real:
-                          <input (input)="_colorsC = $event.target.value" type="color" name="colorC" oncha class="colors" />
+                          <div class="colorIn"></div>
+                          <input (input)="_colorsC = $event.target.value" type="color" name="colorC" id="Almreal" oncha class="colors" />
                         </div>
                       </label>
-                                        <label for="Peso_Proyectado">
+                                        <label for="AlmProy">
                         <div class="pro">
                           Alimentación Proy.:
-                          <input (input)="_colorsD = $event.target.value" type="color" name="colorD" class="colors" />
+                          <div class="colorIn"></div>
+                          <input (input)="_colorsD = $event.target.value" type="color" id="AlmProy" name="colorD" class="colors" />
                         </div>
                       </label>
-                                    </div>
-                                    <div class="colorsParams">
+
                                         <label for="Peso_Proyectado">
                           <div class="pro">
                             Peso Proyectado:
+                            <div class="colorIn"></div>
                             <input (input)="_colorsA = $event.target.value" type="color" name="colorA" class="colors" id="Peso_Proyectado" />
                           </div>
                         </label>
                                         <label for="Peso_Real">
                           <div class="pro">
                             Peso Real:
+                            <div class="colorIn"></div>
                             <input (input)="_colorsB = $event.target.value" type="color" name="colorB" class="colors" id="Peso_Real" />
                           </div>
                       </label>

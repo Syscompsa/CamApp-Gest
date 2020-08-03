@@ -87,18 +87,27 @@ label {
     justify-content: center;
     align-items: center;
     margin-top: 7px;
-    border: solid 0.5px #c6c6c6;
-    border-radius: 5px;
+    border-radius: 0;
     padding: 5px;
     font-size: 7pt;
     cursor: pointer;
     transition: ease all 2.5s;
 }
 
+.colorDefect {
+    width: 100%;
+    padding: 15px;
+    border: solid 1px gray;
+    border-radius: 5px;
+    transition: ease all 0.5s;
+}
+
 .pro:hover {
     transition: ease all 0.5s;
-    background-color: #c6c6c6;
-    border-color: white;
+    border: solid 1px white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    /* background-color: #d4d4d4; */
 }
 
 .viewsChar {
@@ -124,6 +133,8 @@ p {
 
 .stt {
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #off {
@@ -146,6 +157,8 @@ p {
 .colorsParams {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .ps {
@@ -158,8 +171,28 @@ p {
 }
 
 .colors {
-    width: 100px;
+    width: 0px;
+    height: 0px;
     border: none;
+    cursor: pointer;
+    outline-width: 0;
+    outline-style: none;
+    opacity: 0;
+}
+
+.colorIn {
+    width: 30px;
+    height: 30px;
+    border: solid 0.5px rgb(206, 206, 206);
+    transition: ease all 0.5s;
+    border-radius: 100%;
+}
+
+.colorIn:hover {
+    transition: ease all 0.5s;
+    /* width: 35px;
+    height: 35px; */
+    border: solid 0.5px rgb(156, 156, 156);
     cursor: pointer;
 }
 
