@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   // login() {
   //     // tslint:disable-next-line: triple-equals
   //     if (this.usuario == 'admin' || this.usuario == 'demo') {
@@ -59,8 +58,6 @@ export class LoginComponent implements OnInit {
   //     }
   //   }
 
-
-
   passwordHidShow() {
     console.log('activado');
     if (!this.passwordShow) {
@@ -80,6 +77,7 @@ export class LoginComponent implements OnInit {
         this.env.nameUser = x.webUsu;
         localStorage.setItem('token',x.webUsu);
         localStorage.setItem('tokenExpiration', "Falta para token");
+        console.log(x);
         this.router.navigate(['\HomeView']);
       }, err => alert("Clave incorrecta"));
   }

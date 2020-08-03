@@ -18,11 +18,23 @@
         <form id="formInt1">
             <div class="labelInputs mt-2 mb-2">
                 <label for="usuario"><span class="icon-adult"></span>Usuario:</label>
-                <input type="text" id="usuario" class="inputs" placeholder="" requerid [(ngModel)]="usuario" name="usuario">
+                <input type="text"
+                 id="usuario"
+                 class="inputs"
+                 placeholder=""
+                 requerid
+                 [(ngModel)]="_Iuser.webUsu"
+                 name="webUsu">
             </div>
             <div class="labelInputs mt-2 mb-2">
                 <label for="password"><span class="icon-lock-open-1"></span>Contraseña:</label>
-                <input [type]="passwordType" id="pass" class="inputs" placeholder="" requerid [(ngModel)]="password" name="password">
+                <input [type]="passwordType"
+                id="pass"
+                class="inputs"
+                placeholder=""
+                requerid
+                [(ngModel)]="_Iuser.webPass"
+                name="webPass">
                 <div class="showPass">
                     <span class=" icon-eye-3 mt-2" id="eyeA" style="cursor:pointer;" item-end (click)="passwordHidShow()"></span>
                     <!--<span class=" icon-eye-off mt-2" id="eyeAa" style="cursor:pointer;"></span>-->

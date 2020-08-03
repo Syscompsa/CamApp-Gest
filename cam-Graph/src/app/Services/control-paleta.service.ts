@@ -16,4 +16,13 @@ export class ControlPaletaService {
   SavePaleta(contents: Web_Paleta): Observable<Web_Paleta> {
     return this.http.post<Web_Paleta>(this.apiURL + '/AR_2-Canvas/CanvaSave' , contents);
   }
+
+  DelPaleta(Id: Web_Paleta ): Observable<Web_Paleta> {
+    return this.http.delete<Web_Paleta>(this.apiURL + '/AR_2-Canvas/DelCanvas/' + Id);
+  }
+
+  GetPaleta(): Observable<Web_Paleta[]> {
+    return this.http.get<Web_Paleta[]>(this.apiURL + '/AR_2-Canvas/GetCanvas');
+  }
+  
 }

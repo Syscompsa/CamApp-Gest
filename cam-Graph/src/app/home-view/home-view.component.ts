@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Idp03a188 } from '../Models/Dp03a188';
 import { Dp03a188Service } from '../Services/dp03a188.service';
+import { WebuserService } from '../Services/webuser.service';
 
 @Component({
   selector: 'app-home-view',
@@ -15,6 +16,7 @@ export class HomeViewComponent implements OnInit {
   public codigoSiembra;
   public env = environment;
   constructor(public gestGeneral: Dp03a188Service,
+    public userService: WebuserService,
     public router: Router) { }
     ngOnInit() {
       this.GestionesGen();
@@ -44,8 +46,14 @@ export class HomeViewComponent implements OnInit {
       viewMobil.setAttribute('class', property);
     }
 
-    closeSession(){
-      this.router.navigate(['/Login']);
+    // closeSession(){
+    //   this.router.navigate(['/Login']);
+    // }
+
+    logOut() {
+      this.userService.logout();
+      this.router.navigate(['\login']);
+      this.env.header = false;
     }
 
 

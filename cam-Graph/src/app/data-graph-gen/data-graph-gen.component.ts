@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
 import { color } from '@amcharts/amcharts4/core';
+import { WebuserService } from '../Services/webuser.service';
 
 @Component({
   selector: 'app-data-graph-gen',
@@ -36,7 +37,7 @@ export class DataGraphGenComponent implements OnInit {
 
    // variables para input color [FIN]
 
-  constructor(public router: Router, public datagraph: DatagraphService, public route: Router) { }
+  constructor(public router: Router, public datagraph: DatagraphService, public route: Router,  public userService: WebuserService) { }
 
   ngOnInit() {
     let colorDefect = document.getElementById('colorDefect');
@@ -142,8 +143,14 @@ getColorPalets(){
   )
 
 
-  closeSession(){
-    this.router.navigate(['/Login']);
+  // closeSession(){
+  //   this.router.navigate(['/Login']);
+  // }
+
+  logOut() {
+    this.userService.logout();
+    this.router.navigate(['\login']);
+    this.env.header = false;
   }
 
 }
