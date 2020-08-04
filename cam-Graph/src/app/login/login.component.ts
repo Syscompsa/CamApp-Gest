@@ -18,15 +18,16 @@ export class LoginComponent implements OnInit {
   password: string = '';
   usuario: string = '';
 
-  public _Iuser: Iwebuser = { webUsu: "", webPass: "" };
+  // tslint:disable-next-line: variable-name
+  public _Iuser: Iwebuser = { webUsu: '', webPass: '' };
   env = environment;
 
-  constructor(    public userService: WebuserService,
-    public router: Router) { }
-  ngOnInit() { 
+  constructor(  public userService: WebuserService,
+                public router: Router) { }
+  ngOnInit() {
     if (this.userService.estaLogueado()) {
       this.env.header = true;
-      this.router.navigate(['\HomeView']);      
+      this.router.navigate(['\HomeView']);
     }
   }
 
@@ -69,19 +70,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  
-  logeo() {    
+
+  logeo() {
     this.userService.login(this._Iuser)
       .subscribe(x => {
         this.env.header = true;
         this.env.nameUser = x.webUsu;
         localStorage.setItem('token',x.webUsu);
-        localStorage.setItem('tokenExpiration', "Falta para token");
+        localStorage.setItem('tokenExpiration', 'Falta para token');
         console.log(x);
         this.router.navigate(['\HomeView']);
-      }, err => alert("Clave incorrecta"));
+      }, err => alert('Clave incorrecta'));
   }
 
-  
+
 
 }

@@ -6,8 +6,10 @@ import { GraficaComponent } from '../grafica/grafica.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
-import { color } from '@amcharts/amcharts4/core';
+import { color, string } from '@amcharts/amcharts4/core';
 import { WebuserService } from '../Services/webuser.service';
+import { ControlPaletaService } from '../Services/control-paleta.service';
+import { Web_Paleta } from '../Models/Web_Paleta';
 
 @Component({
   selector: 'app-data-graph-gen',
@@ -25,6 +27,7 @@ export class DataGraphGenComponent implements OnInit {
    public valorA = 1;
    public valorB = 50;
 
+
   // variables para input color [INICIO]
   // tslint:disable-next-line: variable-name
   public _colorsA = '#E8CC1A';
@@ -34,16 +37,26 @@ export class DataGraphGenComponent implements OnInit {
   public _colorsC = '#1AE87B';
   // tslint:disable-next-line: variable-name
   public _colorsD = '#1AE2E8';
+  public nameColor: string;
 
+  public colores: Web_Paleta = {
+    Color_Tabla: '',
+    Color_A: this._colorsA,
+    Color_B: this._colorsB,
+    Color_C: this._colorsC,
+    Color_D: this._colorsD,
+    Nombre: this.nameColor
+  };
+
+  public iColors: any [] = [];
    // variables para input color [FIN]
 
-  constructor(public router: Router, public datagraph: DatagraphService, public route: Router,  public userService: WebuserService) { }
+  constructor(public router: Router, public datagraph: DatagraphService,
+              public canvas: ControlPaletaService , public route: Router,
+              public userService: WebuserService) { }
 
   ngOnInit() {
-    let colorDefect = document.getElementById('colorDefect');
-    if(colorDefect.outerHTML === ''){
-      console.log('Esta vacio');
-    }
+    this.getColorPalets();
     this.getSp_0314e();
     if (screen.width <= 600) {
       Swal.fire({
@@ -73,8 +86,35 @@ export class DataGraphGenComponent implements OnInit {
     this.route.navigate(['/', 'HomeView']);
   }
 
-getColorPalets(){
+getColorPalets() {
+  this.canvas.GetPaleta().subscribe( x => {
+    this.iColors = x;
+    console.log(this.iColors);
+  });
+}
 
+saveColor() {
+  Swal.fire({
+    title: '¿Deseas guardar estos colores?',
+    text: 'Recuerda que puedes eliminar esto más adelante',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '¡Sí, Guardar!'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        '¡Color agregado!',
+        'Tus colores han sido guardados',
+        'success'
+      );
+      this.canvas.SavePaleta(this.colores).subscribe( x => {
+        console.log(x);
+      } );
+    }
+  });
+ // this.canvas.SavePaleta(this.colores).subscribe( x => console.log(x));
 }
 
 
@@ -141,7 +181,6 @@ getColorPalets(){
     // console.log(this.InterISsp_031e[0].camaron);
    }
   )
-
 
   // closeSession(){
   //   this.router.navigate(['/Login']);
