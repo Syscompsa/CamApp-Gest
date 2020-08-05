@@ -28,4 +28,9 @@ export const environment = {
   // escalas
   escA: 1,
   escB: 1,
+
+
+  optA: false,
+  
+  _display: "none"
 };

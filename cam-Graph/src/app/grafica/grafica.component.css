@@ -3,9 +3,10 @@ p {
 }
 
 .chartdiv {
+    padding-top: 0px !important;
     padding: 25px;
     width: 100%;
-    height: 600px;
+    height: 550px;
 }
 
 #selectordiv {
@@ -14,6 +15,29 @@ p {
     border-style: groove;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     padding: 7px;
-    border-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     background-color: whitesmoke;
+    position: absolute;
+    animation: ease 1s;
+    top: 110px;
+    margin-left: 25px;
+    animation-name: move;
+    z-index: 300;
 }
+.RangeSelector{
+    background-color: steelblue;
+}
+/* 
+
+@keyframes move{
+    0%{
+        left: -100px;
+    }
+    95%{
+        left: 15px;
+    }
+    100%{
+        left: 0px;
+    }
+} */

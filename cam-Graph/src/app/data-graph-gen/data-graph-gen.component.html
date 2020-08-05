@@ -21,8 +21,17 @@
         <div class="buttonMin" (click)="minimizar()" id="Minimizar" title="Minimizar">
             <span class="icon-eye-2"></span>
         </div>
-        <div class="buttonMin" id="volver" (click)="navLink()" title="Volver Atras">
+        <div class="buttonMin" id="volver" (click)="navLink()" title="Volver">
             <span class="icon-left-open-2"></span>
+        </div>
+        <div class="buttonMin" id="Settings" (click)="opt = !opt"  title="Settings">
+            <span class="icon-chart-line-1"></span>
+        </div>
+        <div class="buttonMin" id="filterSearch"  (click)="getFun()" title="Filtros de Busqueda">
+            <span class="icon-search"></span>
+        </div>
+        <div class="buttonMin" id="documentacion"  title="Guía">
+            <span class="icon-doc"></span>
         </div>
     </div>
     <!-- dashboard 1  [Inicio]-->
@@ -79,8 +88,8 @@
 
     <div class="dash" id="dashB">
 
-        <div class="charA">
-            <div class="viewsChar">
+        <div class="charA" *ngIf="opt">
+            <div class="viewsChar" >
                 <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header" id="headingOne">
@@ -114,7 +123,7 @@
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left display d-flex align-content-center" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
-                    <span class="icon-palette"></span>  <p style="margin: 0px;" class="ps">Colores de parametros:</p>
+                    <span class="icon-brush"></span>  <p style="margin: 0px;" class="ps">Colores de parametros:</p>
                   </button>
                             </h2>
                         </div>

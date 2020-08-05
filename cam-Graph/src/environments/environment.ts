@@ -32,7 +32,11 @@ export const environment = {
   escA: 1,
   escB: 50,
   escArrA: [],
-  escArrB: []
+  escArrB: [],
+
+  optA: false,
+
+  _display: "none"
 
 };
 

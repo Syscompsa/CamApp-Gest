@@ -78,9 +78,23 @@ export class LoginComponent implements OnInit {
         this.env.nameUser = x.webUsu;
         localStorage.setItem('token',x.webUsu);
         localStorage.setItem('tokenExpiration', 'Falta para token');
-        console.log(x);
-        this.router.navigate(['\HomeView']);
-      }, err => alert('Clave incorrecta'));
+        Swal.fire({
+                    icon: 'success',
+                    title: 'Bien...',
+                    text: 'Has ingresado con exito!',
+                    footer: ''
+      });
+      // tslint:disable-next-line: no-unused-expression
+      this.router.navigate(['\HomeView']);
+        
+      }, err => {
+        Swal.fire({
+                  icon:  'error',
+                  title: 'Oops...',
+                  text:  'Verifica tus credenciales!',
+                  footer: ''
+                });
+      });
   }
 
 

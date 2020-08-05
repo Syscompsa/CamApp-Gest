@@ -10,6 +10,7 @@ import { color, string } from '@amcharts/amcharts4/core';
 import { WebuserService } from '../Services/webuser.service';
 import { ControlPaletaService } from '../Services/control-paleta.service';
 import { Web_Paleta } from '../Models/Web_Paleta';
+import { GetTagHTMLService } from '../Services/get-tag-html.service';
 
 @Component({
   selector: 'app-data-graph-gen',
@@ -26,7 +27,7 @@ export class DataGraphGenComponent implements OnInit {
    public finalHeight: string = this.aplyHeight + 'px';
    public valorA = 1;
    public valorB = 50;
-
+   public opt = true;
 
   // variables para input color [INICIO]
   // tslint:disable-next-line: variable-name
@@ -53,9 +54,11 @@ export class DataGraphGenComponent implements OnInit {
 
   constructor(public router: Router, public datagraph: DatagraphService,
               public canvas: ControlPaletaService , public route: Router,
-              public userService: WebuserService) { }
+              public userService: WebuserService,
+              public HTMLTag: GetTagHTMLService) { }
 
   ngOnInit() {
+    this.getTag();
     this.getColorPalets();
     this.getSp_0314e();
     if (screen.width <= 600) {
@@ -75,6 +78,22 @@ export class DataGraphGenComponent implements OnInit {
       });
     }
   }
+  getFun(){
+    this.env.optA = !this.env.optA;
+    switch(this.env.optA){
+      case true:
+        this.env._display = '';
+      break;
+      case false:
+        this.env._display = 'none';
+      break;
+    }
+  }
+
+  getTag(){
+    const setts = document.getElementById('selectordiv');
+    console.log(setts);
+  }
 
 
   // tslint:disable-next-line: only-arrow-functions
@@ -90,7 +109,7 @@ export class DataGraphGenComponent implements OnInit {
   getColorPalets() {
     this.canvas.GetPaleta().subscribe( x => {
       this.iColors = x;
-      console.log(this.iColors);      
+      console.log(this.iColors);
     });
   }
 

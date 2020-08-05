@@ -27,8 +27,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'HomeView', component: HomeViewComponent, pathMatch: 'full' },
-      { path: 'Data', component: DataGraphGenComponent, pathMatch: 'full' },
+      { path: 'HomeView', component: HomeViewComponent },
+      { path: 'Data', component: DataGraphGenComponent },
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
 

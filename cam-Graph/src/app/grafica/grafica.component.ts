@@ -8,6 +8,9 @@ import { DatagraphService } from '../Services/datagraph.service';
 import * as am4plugins_rangeSelector from '@amcharts/amcharts4/plugins/rangeSelector';
 import { DataGraphGenComponent } from '../data-graph-gen/data-graph-gen.component';
 import { resolve } from 'url';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
 
 am4core.useTheme(am4themes_animated);
 
@@ -34,10 +37,11 @@ export class GraficaComponent implements OnInit {
   public alReal: string = 'Alim. Real';
   public chart: any;
   public EnvsData = [];
+  public _display: string;
   // tslint:disable-next-line: variable-name
   public _valueSeries: string;
 
-  constructor(public datagraph: DatagraphService) { }
+  constructor(public datagraph: DatagraphService, public router: Router) { }
 
   // tslint:disable-next-line: variable-name
   private _RecValorA: number;
@@ -102,13 +106,18 @@ export class GraficaComponent implements OnInit {
     this.changebutton()
   }
 
+  
+
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnChanges(changes: SimpleChanges): void {
     // tslint:disable-next-line: no-unused-expression
     // console.log('GA: ' + this._RecValorA);
     // console.log('GB: ' + this._RecValorB);
     this.grafica(this._RecValorA, this._RecValorB, this.ColorA, this.ColorB, this.ColorC, this.ColorD);
+   
   }
+
+  
 
   changeValue(valor) {
     this._valueSeries = valor;
@@ -117,6 +126,8 @@ export class GraficaComponent implements OnInit {
   grafica(valA, valB, colorA, colorB, colorC, colorD) {
     // tslint:disable-next-line: deprecation
     this.datagraph.getSP_GRAFICAWEB(this.env.codSiembra).subscribe(
+      
+      
       x => {
         am4core.useTheme(am4themes_animated);
         // Themes end
@@ -156,6 +167,10 @@ export class GraficaComponent implements OnInit {
         series.stroke = am4core.color(colorA);
         series.minBulletDistance = 10;
         series.strokeDasharray = '3,4';
+        series.tooltipText = "{dateX}: [bold]Peso Proyectado:(Gr.) {valueY}[/]";
+        var bullet1 = series.bullets.push(new am4charts.CircleBullet());
+        var bullet1hover = bullet1.states.create("hover");
+        bullet1hover.properties.scale = 0.9;
         // series.fillOpacity = 0.5;
         // series.propertyFields.stroke = this.ColorA;
         // series.propertyFields.fill = this.ColorA;
@@ -168,7 +183,12 @@ export class GraficaComponent implements OnInit {
         series2.strokeWidth = 2;
         series2.stroke = am4core.color(colorB);
         series2.tensionX = 0.8;
-        series2.stroke = series2.stroke;
+        series2.minBulletDistance = 10;
+        series2.tooltipText = "{dateX}: [bold]Peso Real:(Gr.) {valueY}[/]";
+        var bullet2 = series2.bullets.push(new am4charts.CircleBullet());
+        var bullet2hover = bullet2.states.create("hover");
+        bullet2hover.properties.scale = 0.9;
+        // series2.stroke = series2.stroke;
         // series.fillOpacity = 0.5;
         // series.propertyFields.stroke = this.ColorA;
         // series.propertyFields.fill = this.ColorA;
@@ -181,7 +201,7 @@ export class GraficaComponent implements OnInit {
         series3.strokeWidth = 2;
         series3.stroke = am4core.color(colorC);
         series3.tensionX = 0.8;
-        series3.stroke = series3.stroke;
+        // series3.stroke = series3.stroke;
 
         // // Create series alim_proy
         const series4 = chart.series.push(new am4charts.LineSeries());
@@ -192,13 +212,7 @@ export class GraficaComponent implements OnInit {
         series4.stroke = am4core.color(colorD);
         series4.tensionX = 0.8;
         series4.strokeDasharray = '3,4';
-        series4.stroke = series4.stroke;
-
-        series.tooltipText = '[bold]{date.formatDate()}:[/] {value}' +
-          '\n[bold]{date.formatDate()}: [/] {value2}' +
-          '\n[bold]{date.formatDate()}:[/] {value3}' +
-          '\n[bold]{date.formatDate()}:[/] {value4}';
-        series.tooltip.pointerOrientation = 'vertical';
+        // series4.stroke = series4.stroke;
 
         // let bullet = series.bullets.push(new am4charts.CircleBullet());
         // bullet.circle.radius = 6;
@@ -223,7 +237,6 @@ export class GraficaComponent implements OnInit {
 
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.snapToSeries = series;
-        chart.cursor.xAxis = dateAxis;
         // chart.scrollbarY = new am4core.Scrollbar();
         chart.scrollbarX = new am4core.Scrollbar();
         chart.legend = new am4charts.Legend();
@@ -234,7 +247,27 @@ export class GraficaComponent implements OnInit {
         selector.axis = dateAxis;
         selector.position = 'right';
 
-  });
+  }, err => {
+    Swal.fire({
+      title: '¡Hey!',
+      html: "No se ha cargado la información por que no has escogido una siembra en la vista anterior."+
+      "<br>" +" O simplemente recargaste la página.",
+      icon: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Volver'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+         '¡Te hemos redirigido correctamente!'
+        )
+        this.router.navigate(['/HomeView']);
+      }
+    })
+  }
+  
+  );
 
   }
 

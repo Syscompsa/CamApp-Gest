@@ -1,8 +1,5 @@
-<style>
-    .amcharts-range-selector-period-button {
-        background-color: aqua;
-    }
-</style>
-<p class="text text-info mt-1">EscalaA: {{ RecValorA }} | EscalaB: {{ RecValorB }}</p>
-<div id="selectordiv"></div>
+
+
+<div id="selectordiv" [ngStyle]="{'display': env._display}" ></div>
 <div id="chartdiv" class="chartdiv"></div>
+<p class="text text-info mt-1">EscalaA: {{ RecValorA }} | EscalaB: {{ RecValorB }}</p>

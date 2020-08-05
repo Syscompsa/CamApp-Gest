@@ -43,7 +43,6 @@
 }
 
 .allGeneralCont {
-    border: solid 1px white;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -68,7 +67,7 @@ label {
 }
 
 .buttonMin {
-    background-color: lightblue;
+    background-color: steelblue;
     width: 35px;
     height: 35px;
     display: flex;
@@ -80,20 +79,31 @@ label {
     position: absolute;
     left: 0px;
     top: 0px;
-    opacity: 0.4;
+    opacity: 0.9;
     z-index: 20000;
-    transition: ease all 1.5s;
+    transition: ease all 1.7s;
 }
 
 .buttonMin:hover {
-    transition: ease all 0.5s;
-    opacity: 0.8;
-    border-radius: 7px;
+    transition: ease all 0.3s;
+    opacity: 1;
+    width: 50px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
 }
 
 #volver {
     margin-top: 35px;
+}
+#Settings{
+    margin-top: 70px;
+}
+#filterSearch{
+    margin-top: 105px;
+}
+#documentacion{
+    margin-top: 140px;
 }
 
 .pro {
@@ -157,6 +167,8 @@ label {
     height: auto;
     padding: 15px;
 }
+
+
 
 .title {
     color: steelblue;
@@ -238,15 +250,21 @@ p {
 
 .charA {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     flex-shrink: initial;
     height: auto;
+    width: 175px;
+    position: absolute;
+    left: 30px;
+    top: 45px;
+    z-index: 300;
 }
 
 .viewsChar {
-    width: 50%;
+    width: 100%;
     height: auto;
     /*background-color: lightblue;*/
 }
@@ -360,4 +378,8 @@ p {
     .viewsChar {
         width: 100%;
     }
+    #Minimizar{
+        display: none;
+    }
+  
 }
