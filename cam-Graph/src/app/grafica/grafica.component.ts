@@ -223,7 +223,7 @@ export class GraficaComponent implements OnInit {
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.snapToSeries = series;
         chart.cursor.xAxis = dateAxis;
-        chart.scrollbarY = new am4core.Scrollbar();
+        // chart.scrollbarY = new am4core.Scrollbar();
         chart.scrollbarX = new am4core.Scrollbar();
         chart.legend = new am4charts.Legend();
   });

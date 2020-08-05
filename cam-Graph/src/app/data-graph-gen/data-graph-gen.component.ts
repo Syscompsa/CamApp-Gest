@@ -47,7 +47,7 @@ export class DataGraphGenComponent implements OnInit {
     Color_D: this._colorsD,
     Nombre: this.nameColor
   };
-
+  public colorId;
   public iColors: any [] = [];
    // variables para input color [FIN]
 
@@ -76,6 +76,7 @@ export class DataGraphGenComponent implements OnInit {
     }
   }
 
+
   // tslint:disable-next-line: only-arrow-functions
   timeEvent(time, obj, obj2, param) { setTimeout(function() {
     obj.style.display = param;
@@ -86,36 +87,40 @@ export class DataGraphGenComponent implements OnInit {
     this.route.navigate(['/', 'HomeView']);
   }
 
-getColorPalets() {
-  this.canvas.GetPaleta().subscribe( x => {
-    this.iColors = x;
-    console.log(this.iColors);
-  });
-}
+  getColorPalets() {
+    this.canvas.GetPaleta().subscribe( x => {
+      this.iColors = x;
+      console.log(this.iColors);      
+    });
+  }
 
-saveColor() {
-  Swal.fire({
-    title: '¿Deseas guardar estos colores?',
-    text: 'Recuerda que puedes eliminar esto más adelante',
-    icon: 'info',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: '¡Sí, Guardar!'
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        '¡Color agregado!',
-        'Tus colores han sido guardados',
-        'success'
-      );
-      this.canvas.SavePaleta(this.colores).subscribe( x => {
-        console.log(x);
-      } );
-    }
-  });
- // this.canvas.SavePaleta(this.colores).subscribe( x => console.log(x));
-}
+  delPaleta(obj){
+    this.canvas.DelPaleta(obj).subscribe();
+  }
+
+  saveColor() {
+    Swal.fire({
+      title: '¿Deseas guardar estos colores?',
+      text: 'Recuerda que puedes eliminar esto más adelante',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, Guardar!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          '¡Color agregado!',
+          'Tus colores han sido guardados',
+          'success'
+        );
+        this.canvas.SavePaleta(this.colores).subscribe( x => {
+          console.log(x);
+        } );
+      }
+    });
+  // this.canvas.SavePaleta(this.colores).subscribe( x => console.log(x));
+  }
 
 
   changeCalcA(a) {
