@@ -5,6 +5,7 @@ import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 import { environment } from 'src/environments/environment';
 import { SP_GRAFICAWEB } from '../Models/SP_GRAFICAMWEB';
 import { DatagraphService } from '../Services/datagraph.service';
+import * as am4plugins_rangeSelector from '@amcharts/amcharts4/plugins/rangeSelector';
 import { DataGraphGenComponent } from '../data-graph-gen/data-graph-gen.component';
 import { resolve } from 'url';
 
@@ -98,6 +99,7 @@ export class GraficaComponent implements OnInit {
 
   ngOnInit() {
     // tslint:disable-next-line: no-unused-expression
+    this.changebutton()
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
@@ -138,7 +140,6 @@ export class GraficaComponent implements OnInit {
           });
           // console.log(data);
         }
-
         chart.data = data;
         // Create axes
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
@@ -226,7 +227,19 @@ export class GraficaComponent implements OnInit {
         // chart.scrollbarY = new am4core.Scrollbar();
         chart.scrollbarX = new am4core.Scrollbar();
         chart.legend = new am4charts.Legend();
+
+        // Add range selector
+        var selector = new am4plugins_rangeSelector.DateAxisRangeSelector();
+        selector.container = document.getElementById('selectordiv');
+        selector.axis = dateAxis;
+        selector.position = 'right';
+
   });
 
   }
+
+  changebutton() {
+
+  }
 }
+
