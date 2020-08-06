@@ -15,7 +15,7 @@
 }
 
 .tagColor {
-    width: 70px;
+    width: 85px;
     height: auto;
     padding: 5px;
     border: solid 0.5px gray;
@@ -64,6 +64,25 @@ label {
 .inpts {
     margin-bottom: 10px;
     width: 48%;
+}
+hr{
+    border: solid 1px gray;
+    border-style: dotted;
+    width: 100%;
+}
+
+.button{
+    background-color: teal !important;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    color: white;
+    transition: ease all 1s;
+}
+
+.button:hover{
+    background-color: steelblue !important;
+    transition: ease all 0.5s;
 }
 
 .buttonMin {
@@ -118,19 +137,17 @@ label {
     font-size: 7pt;
     cursor: pointer;
     transition: ease all 2.5s;
+    width: 60px;
 }
 
 .close {
-    position: relative;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     top: -12px;
     left: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 100%;
-    border: solid 1px white;
     background-color: #444444;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     color: white;
@@ -248,6 +265,7 @@ p {
     background-color: orangered;
 }
 
+
 .charA {
     display: flex;
     flex-direction: column;
@@ -258,9 +276,10 @@ p {
     height: auto;
     width: 175px;
     position: absolute;
-    left: 30px;
+    left: 35px;
     top: 45px;
     z-index: 300;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .viewsChar {

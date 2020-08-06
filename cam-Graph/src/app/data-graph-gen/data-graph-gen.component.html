@@ -18,21 +18,27 @@
 
 <div class="allGeneralCont container-fluid animated fadeInLeft slow">
     <div class="minSett">
+        
         <div class="buttonMin" (click)="minimizar()" id="Minimizar" title="Minimizar">
             <span class="icon-eye-2"></span>
         </div>
+
         <div class="buttonMin" id="volver" (click)="navLink()" title="Volver">
             <span class="icon-left-open-2"></span>
         </div>
+
         <div class="buttonMin" id="Settings" (click)="opt = !opt"  title="Settings">
             <span class="icon-chart-line-1"></span>
         </div>
+
         <div class="buttonMin" id="filterSearch"  (click)="getFun()" title="Filtros de Busqueda">
             <span class="icon-search"></span>
         </div>
+
         <div class="buttonMin" id="documentacion"  title="Guía">
             <span class="icon-doc"></span>
         </div>
+
     </div>
     <!-- dashboard 1  [Inicio]-->
     <div class="dash" id="dashA">
@@ -132,7 +138,9 @@
                             <div class="card-body">
                                 <div class="colorDefect" id="colorDefect">
                                     <div class="tagColor" *ngFor="let colors of iColors">
-                                        <div class="close" id= {{colors.id}} (click)="delPaleta(colors.id)">x</div>
+                                        <div class="close" id= {{colors.id}} (click)="delPaleta(colors.id)">
+                                            x
+                                        </div>
                                         <div class="c" [ngStyle]="{'background-color': colors.color_A}"></div>
                                         <div class="c" [ngStyle]="{'background-color': colors.color_B}"></div>
                                         <div class="c" [ngStyle]="{'background-color': colors.color_C}"></div>
@@ -145,33 +153,40 @@
                         <div class="pro">
                           Alimentación Real:
                           <div class="colorIn" [ngStyle]="{'background-color': _colorsC}"></div>
-                          <input (input)="_colorsC = $event.target.value" type="color" name="colorC" id="Almreal" oncha class="colors" />
+                          <input (input)="_colorsC = $event.target.value"
+                          (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" name="colorC" id="Almreal" class="colors" />
                         </div>
                       </label>
-                                        <label for="AlmProy">
+                      <label for="AlmProy">
                         <div class="pro">
                           Alimentación Proy.:
                           <div class="colorIn" [ngStyle]="{'background-color': _colorsD}"></div>
-                          <input (input)="_colorsD = $event.target.value" type="color" id="AlmProy" name="colorD" class="colors" />
+                          <input (input)="_colorsD = $event.target.value"
+                          (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" id="AlmProy" name="colorD" class="colors" />
                         </div>
                       </label>
-
-                                        <label for="Peso_Proyectado">
+<hr>
+                      <label for="Peso_Proyectado">
                           <div class="pro">
                             Peso Proyectado:
                             <div class="colorIn" [ngStyle]="{'background-color': _colorsA}"></div>
-                            <input (input)="_colorsA = $event.target.value" type="color" name="colorA" class="colors" id="Peso_Proyectado" />
+                            <input (input)="_colorsA = $event.target.value"
+                            (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" name="colorA" class="colors" id="Peso_Proyectado" />
                           </div>
                         </label>
-                                        <label for="Peso_Real">
+                     <label for="Peso_Real">
                           <div class="pro">
-                            Peso Real:
+                            Peso <br> Real:
                             <div class="colorIn" [ngStyle]="{'background-color': _colorsB}"></div>
-                            <input (input)="_colorsB = $event.target.value" type="color" name="colorB" class="colors" id="Peso_Real" />
+                            <input (input)="_colorsB = $event.target.value"
+                            (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" name="colorB" class="colors" id="Peso_Real" />
                           </div>
                       </label>
                                     </div>
-                                    <div class="btn btn-dark" (click)="saveColor()"><span class="icon-doc"></span></div>
+    <hr>
+                                    <button type="submit" class="button" (click)="saveColor()">
+                                        <span class="icon-floppy"></span>Guardar colores
+                                    </button>
                                 </div>
                             </div>
                         </div>

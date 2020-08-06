@@ -78,23 +78,33 @@ export class DataGraphGenComponent implements OnInit {
       });
     }
   }
+
+  getInpColor(colorA, colorB, colorC, colorD){
+    this.colores.Color_A = colorA;
+    this.colores.Color_B = colorB;
+    this.colores.Color_C = colorC; 
+    this.colores.Color_D = colorD;
+    //console.log(this.colores);
+  }
+  
   getFun(){
     this.env.optA = !this.env.optA;
     switch(this.env.optA){
       case true:
         this.env._display = '';
+        //console.log(this.env.optA);
       break;
       case false:
         this.env._display = 'none';
+        //console.log(this.env.optA);
       break;
     }
   }
 
   getTag(){
     const setts = document.getElementById('selectordiv');
-    console.log(setts);
+    //console.log(setts);
   }
-
 
   // tslint:disable-next-line: only-arrow-functions
   timeEvent(time, obj, obj2, param) { setTimeout(function() {
@@ -109,12 +119,24 @@ export class DataGraphGenComponent implements OnInit {
   getColorPalets() {
     this.canvas.GetPaleta().subscribe( x => {
       this.iColors = x;
-      console.log(this.iColors);
+      //console.log(this.iColors);
     });
   }
 
   delPaleta(obj){
-    this.canvas.DelPaleta(obj).subscribe();
+    this.canvas.DelPaleta(obj).subscribe(
+      x=>{
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Eliminando, un momento porfavor.',
+          showConfirmButton: false,
+          timer: 1100
+        });
+        this.getColorPalets();
+      }
+    );
+
   }
 
   saveColor() {
@@ -134,7 +156,8 @@ export class DataGraphGenComponent implements OnInit {
           'success'
         );
         this.canvas.SavePaleta(this.colores).subscribe( x => {
-          console.log(x);
+          this.getColorPalets();
+          //console.log(x);
         } );
       }
     });
@@ -153,9 +176,9 @@ export class DataGraphGenComponent implements OnInit {
 
   changeCalcB(b) {
     const valB = Number(b);
-    console.log(valB);
+    //console.log(valB);
     this.env.escB = valB;
-    console.log('escB ' + this.env.escB);
+    //console.log('escB ' + this.env.escB);
   }
 
   minimizar() {
