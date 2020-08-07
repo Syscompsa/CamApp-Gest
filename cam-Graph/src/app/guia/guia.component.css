@@ -1,0 +1,17 @@
+.supHeader{
+    background-color: #444444;
+}
+.supHeader, a {
+    color: steelblue;
+    font-size: 10pt;
+}
+
+img{
+    width: auto;
+    height: 50px;
+}
+
+#logo{
+    width: 130px;
+    height: auto;
+}

@@ -319,7 +319,6 @@ function createSeries(field, name, color) {
   series.dataFields.dateX = "date";
   series.name = name;
   series.tooltipText = "{dateX}: [b]{valueY}[/]";
-  series.strokeWidth = 2.3;
   series.fill = am4core.color(color);
   
   return series;
@@ -409,11 +408,11 @@ chart.cursor = new am4charts.XYCursor();
   var series3 = chart.series.push(new am4charts.LineSeries());
   series3.dataFields.valueY = "value3";
   series3.dataFields.dateX = "date";
-  series3.name = "Alimentación Proyectada";
+  series3.name = "Alimentación Real";
   series3.strokeWidth = 2;
   series3.stroke = am4core.color(colorC);
   series3.tensionX = 0.7;
-  series3.tooltipText = "{categoryX}: [bold] Alim. Proyectada (Kg.) {valueY}[/]";
+  series3.tooltipText = "{categoryX}: [bold] Alim. Real (Kg.) {valueY}[/]";
   series3.tooltip.getFillFromObject = false;
   series3.tooltip.background.fill = am4core.color(colorC);
   var bullet3 = series3.bullets.push(new am4charts.CircleBullet());
@@ -425,11 +424,11 @@ chart.cursor = new am4charts.XYCursor();
   var series4 = chart.series.push(new am4charts.LineSeries());
   series4.dataFields.valueY = "value4";
   series4.dataFields.dateX = "date";
-  series4.name = "Alimentación Real";
+  series4.name = "Alim. Proyectada";
   series4.strokeWidth = 2;
   series4.stroke = am4core.color(colorD);
   series4.tensionX = 0.7;
-  series4.tooltipText = "{categoryX}: [bold] Alim. Real (Kg.) {valueY}[/]";
+  series4.tooltipText = "{categoryX}: [bold] Alim. Proyectada (Kg.) {valueY}[/]";
   var bullet4 = series4.bullets.push(new am4charts.CircleBullet());
   series4.tooltip.getFillFromObject = false;
   series4.tooltip.background.fill = am4core.color(colorD);
@@ -448,7 +447,7 @@ chart.cursor = new am4charts.XYCursor();
         var selector = new am4plugins_rangeSelector.DateAxisRangeSelector();
         selector.container = document.getElementById('selectordiv');
         selector.axis = dateAxis;
-        selector.position = 'right';
+        selector.position = 'left';
   
   
         }, err => {

@@ -31,6 +31,7 @@ import { GuiaComponent } from './guia/guia.component';
     RouterModule.forRoot([
       { path: 'HomeView', component: HomeViewComponent },
       { path: 'Data', component: DataGraphGenComponent },
+      { path: 'Guia', component: GuiaComponent },
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
 

@@ -18,6 +18,18 @@ p {
     .chartdiv{
         height: 430px;
         /* background-color: rgb(42, 42, 42); */
+    }
+    .text{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .chartdiv{
+        height: 290px;
+        padding-right: 35px;
+        padding-left: 35px;
+        /* background-color: rgb(42, 42, 42); */
 
     }
 }
