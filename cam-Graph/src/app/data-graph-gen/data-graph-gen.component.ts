@@ -166,7 +166,41 @@ export class DataGraphGenComponent implements OnInit {
     });
   }
 
+help(){
+  //console.log('help')
+  Swal.mixin({
+
+    confirmButtonText: 'Next &rarr;',
+    showCancelButton: true,
+    progressSteps: ['1', '2', '3']
+  }).queue([
+    {
+      title: 'Paso 1',
+      html: '<p class="test">Toca el gráfico en la fecha inicial y desliza con el dedo, hacia la fecha a consultar</p><br>'
+      +'<img src="../../assets/Guia-Usuario/Dibujar-dedo.png">'
+    },
+    {
+      title: 'Paso 2',
+      html: '<p class="test">Toca el gráfico para visualizar los datos</p><br>'
+      +'<img src="../../assets/Guia-Usuario/Clickear-dedo.png">'
+    },
+    {
+      title: 'Paso 3',  
+      html: '<p class="test">Presiona el botón minimizar</p><br>'
+      +'<img src="../../assets/Guia-Usuario/Minimizar-dedo.png">'
+    }
+  ]).then((result) => {
+      Swal.fire({
+        icon: 'success',
+        title: '¿Comprendido?',
+        confirmButtonText: '¡Genial!'
+      })    
+  })
+}
+
+
   getColorPalets() {
+    if(screen.width <= 800 ){
     this.canvas.GetPaleta().subscribe( x => {
       this.iColors = x;
       Swal.fire({
@@ -184,7 +218,12 @@ export class DataGraphGenComponent implements OnInit {
       this._colorsD = this.iColors[coloresPaleta].color_D;
       console.log(this.iColors);
     });
+  
   }
+else {
+  document.getElementById('documentacion').style.display = 'none';
+}
+}
 
   delPaleta(obj){
     this.canvas.DelPaleta(obj).subscribe(

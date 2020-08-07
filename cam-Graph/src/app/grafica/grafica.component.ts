@@ -303,7 +303,7 @@ this.InterSP_GRAFICAWEB = x;
 // Create axes
 var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
 dateAxis.renderer.grid.template.location = 0;
-dateAxis.renderer.minGridDistance = 30;
+dateAxis.renderer.minGridDistance = 850;
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
@@ -331,7 +331,7 @@ createSeries("value4", "Alimentación Proyectada. (Kg.)" , colorD);
 
 chart.legend = new am4charts.Legend();
 chart.cursor = new am4charts.XYCursor();
-// chart.scrollbarX = new am4core.Scrollbar();
+chart.scrollbarX = new am4core.Scrollbar();
       });
   }
 
@@ -371,8 +371,10 @@ chart.cursor = new am4charts.XYCursor();
   
   /* Create value axis */
   var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-  
-  /* Create series */
+  // Add range selector
+  var selector = new am4plugins_rangeSelector.DateAxisRangeSelector();
+
+   /* Create series */
   var series1 = chart.series.push(new am4charts.LineSeries());
   series1.dataFields.valueY = "value";
   series1.dataFields.dateX = "date";
@@ -435,22 +437,19 @@ chart.cursor = new am4charts.XYCursor();
   var bullet4hover = bullet4.states.create("hover");
   bullet4.properties.scale = 0;
   bullet4.fill = am4core.color(colorD);
-  bullet4hover.properties.scale = 1.3;
-  
+  bullet4hover.properties.scale = 1.3;  
   /* Add legend */
-  chart.legend = new am4charts.Legend();
-  
+  chart.legend = new am4charts.Legend();  
   /* Create a cursor */
   chart.cursor = new am4charts.XYCursor();
 
-        // Add range selector
-        var selector = new am4plugins_rangeSelector.DateAxisRangeSelector();
-        selector.container = document.getElementById('selectordiv');
-        selector.axis = dateAxis;
-        selector.position = 'left';
-  
-  
-        }, err => {
+  let selectorDiv = document.getElementById('selectordiv');
+  selector.container = selectorDiv;
+  selector.axis = dateAxis;
+  selector.position = 'left';
+  chart.scrollbarX = new am4core.Scrollbar();        
+
+  }, err => {
           Swal.fire({
             title: '¡Hey!',
             html: "No se ha cargado la información por que no has escogido una siembra en la vista anterior."+

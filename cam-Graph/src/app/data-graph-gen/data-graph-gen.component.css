@@ -14,6 +14,8 @@
     height: 15px;
 }
 
+
+
 .tagColor {
     width: 85px;
     height: auto;
@@ -292,6 +294,10 @@ p {
     height: 450px;
 }
 
+.test{
+    font-size: 8pt !important;
+    margin-bottom: 0 !important;
+}
 
 /* Animacion de Opacidad INICIO */
 
@@ -399,6 +405,30 @@ p {
     }
     #Minimizar{
         display: none;
+    }
+  
+}
+
+
+@media (max-width: 800px) {
+    #collapseTwo{
+        height: 150px !important;
+        overflow-y: scroll;
+    }
+    #documentacion{
+        animation: activePalpit ease 2s infinite;
+        transition: ease all 0.5s;
+    }
+    @keyframes activePalpit {
+        0%{
+            border: solid 0px orange;
+        }
+        60%{            
+            border: solid 3px orange;
+        }        
+        100%{            
+            border: none;
+        }
     }
   
 }
