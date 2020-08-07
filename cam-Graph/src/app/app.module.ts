@@ -10,6 +10,7 @@ import { DataGraphGenComponent } from './data-graph-gen/data-graph-gen.component
 import { TableComponent } from './table/table.component';
 import { GraficaComponent } from './grafica/grafica.component';
 import { LoginComponent } from './login/login.component';
+import { GuiaComponent } from './guia/guia.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { LoginComponent } from './login/login.component';
     TableComponent,
     GraficaComponent,
     LoginComponent,
+    GuiaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

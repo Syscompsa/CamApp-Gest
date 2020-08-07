@@ -24,5 +24,9 @@ export class ControlPaletaService {
   GetPaleta(): Observable<Web_Paleta[]> {
     return this.http.get<Web_Paleta[]>(this.apiURL + '/AR_2-Canvas/GetCanvas');
   }
+
+  GetPaletaById(ID): Observable<Web_Paleta[]> {
+    return this.http.get<Web_Paleta[]>(this.apiURL + '/AR_2-Canvas/GetCanvasID/' + ID);
+  }
   
 }

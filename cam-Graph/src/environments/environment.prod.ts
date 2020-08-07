@@ -32,5 +32,8 @@ export const environment = {
 
   optA: false,
   
-  _display: "none"
+  optB: false,
+  _display: "none",
+  
+  _displayB: "none"
 };

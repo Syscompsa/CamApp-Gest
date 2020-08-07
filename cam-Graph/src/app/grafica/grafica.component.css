@@ -9,6 +9,11 @@ p {
     height: 550px;
 }
 
+.chartdivB{
+    display: none;
+    height: 400px;
+}
+
 @media screen and (max-width: 1000px){
     .chartdiv{
         height: 430px;
@@ -16,6 +21,18 @@ p {
 
     }
 }
+
+@media screen and (max-width: 600px){
+    .chartdiv{
+        display: none;
+        /* background-color: rgb(42, 42, 42); */
+
+    }
+    .chartdivB{
+        display: flex;
+    }
+}
+
 
 
 #selectordiv {

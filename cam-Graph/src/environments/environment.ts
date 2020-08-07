@@ -35,8 +35,10 @@ export const environment = {
   escArrB: [],
 
   optA: false,
+  optB: false,
 
-  _display: "none"
+  _display: "none",
+  _displayB: "none"
 
 };
 

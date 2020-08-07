@@ -28,16 +28,17 @@ export class DataGraphGenComponent implements OnInit {
    public valorA = 1;
    public valorB = 50;
    public opt = true;
+   public _id_color;
 
   // variables para input color [INICIO]
   // tslint:disable-next-line: variable-name
-  public _colorsA = '#E8CC1A';
+  public _colorsA;
   // tslint:disable-next-line: variable-name
-  public _colorsB = '#E8871A';
+  public _colorsB;
   // tslint:disable-next-line: variable-name
-  public _colorsC = '#1AE87B';
+  public _colorsC;
   // tslint:disable-next-line: variable-name
-  public _colorsD = '#1AE2E8';
+  public _colorsD;
   public nameColor: string;
 
   public colores: Web_Paleta = {
@@ -50,6 +51,12 @@ export class DataGraphGenComponent implements OnInit {
   };
   public colorId;
   public iColors: any [] = [];
+  public iColorsGET: any [] = [];
+  public iColorsGETById: any [] = [];
+  public _activeA:string;
+  public _activeB:string;
+  public _activeC:string;
+  public _activeD:string;
    // variables para input color [FIN]
 
   constructor(public router: Router, public datagraph: DatagraphService,
@@ -87,18 +94,42 @@ export class DataGraphGenComponent implements OnInit {
     //console.log(this.colores);
   }
   
-  getFun(){
+  getFunA(obj){
     this.env.optA = !this.env.optA;
     switch(this.env.optA){
       case true:
+        this.active(obj, 'orange');
         this.env._display = '';
-        //console.log(this.env.optA);
+        // console.log(this.env.optA);
       break;
-      case false:
-        this.env._display = 'none';
-        //console.log(this.env.optA);
+      case false:        
+      this.active(obj, 'steelblue');
+      this.env._display = 'none';
+        // console.log(this.env.optA);
       break;
     }
+  }
+
+  getFunB(obj){
+    this.env.optB = !this.env.optB;
+    switch(this.env.optB){
+      case true:
+        this.active(obj, 'orange');
+        this.env._displayB = '';
+        // console.log(this.env.optA);
+      break;
+      case false:        
+      this.active(obj, 'steelblue');
+      this.env._displayB = 'none';
+        // console.log(this.env.optA);
+      break;
+    }
+  }
+
+  active(obj, color){
+    let activeElement = document.getElementById(obj);
+    activeElement.style.backgroundColor = color;
+    
   }
 
   getTag(){
@@ -116,10 +147,42 @@ export class DataGraphGenComponent implements OnInit {
     this.route.navigate(['/', 'HomeView']);
   }
 
+  selectPaleta(id){
+    console.log(id);
+    this.canvas.GetPaletaById(id).subscribe(x=>{ console.log(x);
+        this.iColorsGETById = x;
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Asignando paleta de colores.',
+          foote: 'Un momento.',
+          showConfirmButton: false,
+          timer: 2000
+        });
+        this._colorsA = this.iColorsGETById[0].color_A; 
+        this._colorsB = this.iColorsGETById[0].color_B; 
+        this._colorsC = this.iColorsGETById[0].color_C; 
+        this._colorsD = this.iColorsGETById[0].color_D;
+    });
+  }
+
   getColorPalets() {
     this.canvas.GetPaleta().subscribe( x => {
       this.iColors = x;
-      //console.log(this.iColors);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Cargando las animaciones y colores.',
+        foote: 'Un momento.',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      let coloresPaleta = this.iColors.length -1;
+      this._colorsA = this.iColors[coloresPaleta].color_A; 
+      this._colorsB = this.iColors[coloresPaleta].color_B; 
+      this._colorsC = this.iColors[coloresPaleta].color_C; 
+      this._colorsD = this.iColors[coloresPaleta].color_D;
+      console.log(this.iColors);
     });
   }
 

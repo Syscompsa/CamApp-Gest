@@ -2,16 +2,20 @@
     <span class="icon-off" id="off" title="Cerrar Sesión" (click)="logOut()">
   </span> Bienvenido: {{env.nameUser}} | OSTRATEK </div>
 <div class="men">
-    <div class="siemb"> <span class="icon-braille"></span> Siembra: {{env.codSiembra}} </div>
+    <div class="siemb"> <span class="icon-braille"></span> 
+        Siembra: {{env.codSiembra}} </div>
     <div class="dataResponsive" *ngFor="let dato of InterISsp_031e">
         <div class="cam">
-            <span class="icon-circle-empty"></span> Camaronera: {{InterISsp_031e[0].camaron}}
+            <span class="icon-circle-empty"></span> 
+            Camaronera: {{InterISsp_031e[0].camaron}}
         </div>
         <div class="cam">
-            <span class="icon-calendar-1"></span> Fecha Inicio: {{InterISsp_031e[0].fecha | date: 'shortDate'}}
+            <span class="icon-calendar-1"></span> 
+            Fecha Inicio: {{InterISsp_031e[0].fecha | date: 'shortDate'}}
         </div>
         <div class="cam">
-            <span class="icon-calendar-1"></span> Fecha Fin: {{InterISsp_031e[0].fechaven | date: 'shortDate'}}
+            <span class="icon-calendar-1"></span> 
+            Fecha Fin: {{InterISsp_031e[0].fechaven | date: 'shortDate'}}
         </div>
     </div>
 </div>
@@ -19,24 +23,31 @@
 <div class="allGeneralCont container-fluid animated fadeInLeft slow">
     <div class="minSett">
         
-        <div class="buttonMin" (click)="minimizar()" id="Minimizar" title="Minimizar">
+        <div class="buttonMin" (click)="minimizar()"
+             id="Minimizar" title="Minimizar">
             <span class="icon-eye-2"></span>
         </div>
 
-        <div class="buttonMin" id="volver" (click)="navLink()" title="Volver">
+        <div class="buttonMin" id="volver"
+             (click)="navLink()" title="Volver">
             <span class="icon-left-open-2"></span>
         </div>
 
-        <div class="buttonMin" id="Settings" (click)="opt = !opt"  title="Settings">
-            <span class="icon-chart-line-1"></span>
+        <div class="buttonMin" id="Settings"
+             (click)="getFunB('Settings')"  title="Settings">
+             <span class="icon-chart-line-1"></span>
         </div>
 
-        <div class="buttonMin" id="filterSearch"  (click)="getFun()" title="Filtros de Busqueda">
-            <span class="icon-search"></span>
+        <div class="buttonMin" id="filterSearch"
+             [ngStyle]="{'background-color': _activeA}"
+             (click)="getFunA('filterSearch')"
+             title="Filtros de búsqueda por fecha: AAAA-MM-DD">
+             <span class="icon-search"></span>
         </div>
 
-        <div class="buttonMin" id="documentacion"  title="Guía">
-            <span class="icon-doc"></span>
+        <div class="buttonMin" id="documentacion"
+             title="Guía">
+             <span class="icon-doc"></span>
         </div>
 
     </div>
@@ -92,30 +103,36 @@
 
     <!-- dashboard 2  [Inicio]-->
 
-    <div class="dash" id="dashB">
-
-        <div class="charA" *ngIf="opt">
+    <div class="dash" id="dashB" >
+        <div class="charA" [ngStyle]="{'display': env._displayB}">
             <div class="viewsChar" >
                 <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left display d-flex align-content-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <span class=" icon-resize-vertical-2"></span> <p style="margin: 0px;" class="ps">Escala de parametros:</p>
+                    <span class=" icon-resize-vertical-2"></span> 
+                    <p style="margin: 0px;" class="ps">Escala de parametros:</p>
                   </button>
                             </h2>
                         </div>
 
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapseOne" class="collapse" 
+                        aria-labelledby="headingOne" 
+                        data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="inpRange">
                                     <label> Peso Real / Peso Proy. </label>
-                                    <input type="range" min="1" max="100" class="slider" (change)="changeCalcA(valorA )" value="{{env.escA}}" (input)="valorA = $event.target.value" />
+                                    <input type="range" min="1" max="100" 
+                                    class="slider" (change)="changeCalcA(valorA )"
+                                    value="{{env.escA}}" (input)="valorA = $event.target.value" />
 
                                 </div>
                                 <div class="inpRange">
                                     <label> Alim. Real / Alim Proy. </label>
-                                    <input type="range" min="1" max="100" (change)="changeCalcB(valorB)" value="{{env.escB}}" (input)="valorB = $event.target.value" class="slider" />
+                                    <input type="range" min="1" max="100"
+                                    (change)="changeCalcB(valorB)" value="{{env.escB}}"
+                                    (input)="valorB = $event.target.value" class="slider" />
 
                                 </div>
                             </div>
@@ -128,23 +145,39 @@
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left display d-flex align-content-center" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
-                    <span class="icon-brush"></span>  <p style="margin: 0px;" class="ps">Colores de parametros:</p>
+                                <button class="btn btn-link btn-block text-left display d-flex align-content-center"
+                                 type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                  aria-expanded="false" aria-controls="collapseOne">
+                    <span class="icon-brush"></span>  <p style="margin: 0px;"
+                     class="ps">Colores de parametros:</p>
                   </button>
                             </h2>
                         </div>
 
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapseTwo" class="collapse"
+                         aria-labelledby="headingOne"
+                         data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="colorDefect" id="colorDefect">
-                                    <div class="tagColor" *ngFor="let colors of iColors">
-                                        <div class="close" id= {{colors.id}} (click)="delPaleta(colors.id)">
+                                    <div class="tagColor"
+                                        *ngFor="let colors of iColors"
+                                        (click)="selectPaleta(colors.id)" id= {{colors.id}}>
+                                        <div class="close" id= {{colors.id}}
+                                        (click)="delPaleta(colors.id)">
                                             x
                                         </div>
-                                        <div class="c" [ngStyle]="{'background-color': colors.color_A}"></div>
-                                        <div class="c" [ngStyle]="{'background-color': colors.color_B}"></div>
-                                        <div class="c" [ngStyle]="{'background-color': colors.color_C}"></div>
-                                        <div class="c" [ngStyle]="{'background-color': colors.color_D}"></div>
+                                            <div class="c"
+                                            [ngStyle]="{'background-color': colors.color_A}">
+                                            </div>
+                                            <div class="c"
+                                            [ngStyle]="{'background-color': colors.color_B}">
+                                            </div>
+                                            <div class="c"
+                                            [ngStyle]="{'background-color': colors.color_C}">
+                                            </div>
+                                            <div class="c"
+                                            [ngStyle]="{'background-color': colors.color_D}">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="stt">
@@ -154,7 +187,8 @@
                           Alimentación Real:
                           <div class="colorIn" [ngStyle]="{'background-color': _colorsC}"></div>
                           <input (input)="_colorsC = $event.target.value"
-                          (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" name="colorC" id="Almreal" class="colors" />
+                          (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)"
+                          type="color" name="colorC" id="Almreal" class="colors" />
                         </div>
                       </label>
                       <label for="AlmProy">
@@ -162,7 +196,8 @@
                           Alimentación Proy.:
                           <div class="colorIn" [ngStyle]="{'background-color': _colorsD}"></div>
                           <input (input)="_colorsD = $event.target.value"
-                          (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" id="AlmProy" name="colorD" class="colors" />
+                          (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)"
+                          type="color" id="AlmProy" name="colorD" class="colors" />
                         </div>
                       </label>
 <hr>
@@ -171,7 +206,8 @@
                             Peso Proyectado:
                             <div class="colorIn" [ngStyle]="{'background-color': _colorsA}"></div>
                             <input (input)="_colorsA = $event.target.value"
-                            (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" name="colorA" class="colors" id="Peso_Proyectado" />
+                            (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)"
+                            type="color" name="colorA" class="colors" id="Peso_Proyectado" />
                           </div>
                         </label>
                      <label for="Peso_Real">
@@ -179,7 +215,8 @@
                             Peso <br> Real:
                             <div class="colorIn" [ngStyle]="{'background-color': _colorsB}"></div>
                             <input (input)="_colorsB = $event.target.value"
-                            (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)" type="color" name="colorB" class="colors" id="Peso_Real" />
+                            (change)="getInpColor(_colorsA,_colorsB,_colorsC,_colorsD)"
+                            type="color" name="colorB" class="colors" id="Peso_Real" />
                           </div>
                       </label>
                                     </div>

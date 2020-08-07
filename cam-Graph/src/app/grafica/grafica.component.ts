@@ -115,7 +115,7 @@ export class GraficaComponent implements OnInit {
     // console.log('GB: ' + this._RecValorB);
 
     //this.grafica(this._RecValorA, this._RecValorB, this.ColorA, this.ColorB, this.ColorC, this.ColorD);
-   
+   this.graficaBar(this._RecValorA, this._RecValorB, this.ColorA, this.ColorB, this.ColorC, this.ColorD);
   }
 
   
@@ -269,6 +269,72 @@ export class GraficaComponent implements OnInit {
   // );
 
   // }
+
+  graficaBar(valA, valB, colorA, colorB, colorC, colorD){
+    this.datagraph.getSP_GRAFICAWEB(this.env.codSiembra).subscribe(x => 
+      {
+
+//am4core.useTheme(am4themes_animated);
+
+// Create chart instance
+var chart = am4core.create("chartdivB", am4charts.XYChart);
+
+this.InterSP_GRAFICAWEB = x;
+          let data = [];
+          for (let i = 0; i <= this.InterSP_GRAFICAWEB.length - 1; i++) {
+  
+            this.pesoProy = this.InterSP_GRAFICAWEB[i].creci_proy * valA;
+            this.pesoReal = this.InterSP_GRAFICAWEB[i].peso_real * valA;
+            this.alimRal = this.InterSP_GRAFICAWEB[i].alim_real / valB ;
+            this.alimProy = this.InterSP_GRAFICAWEB[i].alim_proy / valB;
+  
+            data.push({
+              date: this.InterSP_GRAFICAWEB[i].fechaMod.toString().slice(0,-9),
+              value: this.pesoProy,
+              value2: this.pesoReal,
+              value3: this.alimRal,
+              value4: this.alimProy,
+              previousDate: this.InterSP_GRAFICAWEB[i].fechaMod
+            });
+            // console.log(data);
+          }
+          chart.data = data;
+
+// Create axes
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.renderer.grid.template.location = 0;
+dateAxis.renderer.minGridDistance = 30;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+valueAxis.events.on("ready", function(ev) {
+  ev.target.min = ev.target.min;
+  ev.target.max = ev.target.max;
+})
+
+// Create series
+function createSeries(field, name, color) {
+  var series = chart.series.push(new am4charts.ColumnSeries());
+  series.dataFields.valueY = field;
+  series.dataFields.dateX = "date";
+  series.name = name;
+  series.tooltipText = "{dateX}: [b]{valueY}[/]";
+  series.strokeWidth = 2.3;
+  series.fill = am4core.color(color);
+  
+  return series;
+}
+
+createSeries("value", "Peso Proyectado.(Gr.)", colorA);
+createSeries("value2", "Peso Real.(Gr.)" , colorB);
+createSeries("value3", "Alimnetación Real. (Kg.)" , colorC);
+createSeries("value4", "Alimentación Proyectada. (Kg.)" , colorD);
+
+chart.legend = new am4charts.Legend();
+chart.cursor = new am4charts.XYCursor();
+// chart.scrollbarX = new am4core.Scrollbar();
+      });
+  }
 
 
     graficaB(valA, valB, colorA, colorB, colorC, colorD){

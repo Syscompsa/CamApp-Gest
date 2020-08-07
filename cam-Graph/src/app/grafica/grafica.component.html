@@ -1,5 +1,18 @@
 
 
-<div id="selectordiv" [ngStyle]="{'display': env._display}" ></div>
-<div id="chartdiv" class="chartdiv"></div>
-<p class="text text-info mt-1">EscalaA: {{ RecValorA }} | EscalaB: {{ RecValorB }}</p>
+<div id="selectordiv" 
+[ngStyle]="{'display': env._display}" >
+<p class="text text-info" title="Busque por fechas">
+   <span class="icon-calendar"></span> Formato: AÑO-MES-DÍA   
+</p>
+<h5 style="font-size: 9pt; color: gray;">Filtrar por fechas:</h5>
+   <hr>
+</div>
+<div id="chartdiv" class="chartdiv">
+</div>
+<div id="chartdivB" class="chartdivB">    
+</div>
+<p class="text text-info mt-1" style="font-size: 8pt;">
+   <strong>EscalaA</strong>  (Esta escala corresponde a Peso Real y Peso Proyectado): <strong> {{ RecValorA }}</strong> 
+     | <strong>EscalaB</strong>  (Esta escala corresponde a Alimentación Real y Alimentación proyectada): <strong>{{ RecValorB }}</strong> 
+</p>
