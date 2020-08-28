@@ -9,7 +9,7 @@ import { Cone } from '@amcharts/amcharts4/core';
 })
 export class ControlPaletaService {
 
-  private apiURL = 'https://webapplicationsyscompsa20200728022748.azurewebsites.net/api';
+  private apiURL = 'https://camar.azurewebsites.net/api';
 
   constructor(private http: HttpClient) { }
 

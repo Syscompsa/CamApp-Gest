@@ -8,7 +8,7 @@ import { Idp03a188 } from '../Models/Dp03a188';
 })
 export class Dp03a188Service {
 
-  private apiURL = 'https://webapplicationsyscompsa20200728022748.azurewebsites.net/api';
+  private apiURL = 'https://camar.azurewebsites.net/api';
   // http://www.syscompsa.somee.com/api/AR_1-GraficasCamApp/GetGenView
   // https://ecuapirest.firebaseio.com/0.json
   // this.apiURL + "/AR_1-GraficasCamApp/GetGenView"

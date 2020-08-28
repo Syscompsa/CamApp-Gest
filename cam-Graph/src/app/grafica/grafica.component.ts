@@ -60,6 +60,7 @@ export class GraficaComponent implements OnInit {
   set RecValorA(value: number) {
     this._RecValorA = value;
   }
+  
   get RecValorA(): number {
     return this._RecValorA;
   }
@@ -335,8 +336,7 @@ chart.scrollbarX = new am4core.Scrollbar();
       });
   }
 
-
-    graficaB(valA, valB, colorA, colorB, colorC, colorD){
+graficaB(valA, valB, colorA, colorB, colorC, colorD){
 
       this.datagraph.getSP_GRAFICAWEB(this.env.codSiembra).subscribe(x => 
         {
@@ -349,7 +349,7 @@ chart.scrollbarX = new am4core.Scrollbar();
   
             this.pesoProy = this.InterSP_GRAFICAWEB[i].creci_proy * valA;
             this.pesoReal = this.InterSP_GRAFICAWEB[i].peso_real * valA;
-            this.alimRal = this.InterSP_GRAFICAWEB[i].alim_real / valB ;
+            this.alimRal  = this.InterSP_GRAFICAWEB[i].alim_real / valB;
             this.alimProy = this.InterSP_GRAFICAWEB[i].alim_proy / valB;
   
             data.push({
@@ -447,7 +447,7 @@ chart.scrollbarX = new am4core.Scrollbar();
   selector.container = selectorDiv;
   selector.axis = dateAxis;
   selector.position = 'left';
-  chart.scrollbarX = new am4core.Scrollbar();        
+    
 
   }, err => {
           Swal.fire({

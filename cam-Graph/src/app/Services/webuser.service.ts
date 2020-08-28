@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WebuserService {
-  private apiURL = 'https://webapplicationsyscompsa20200728022748.azurewebsites.net/api';
+  private apiURL = 'https://camar.azurewebsites.net/api';
 
   constructor(private http: HttpClient) { }
     
